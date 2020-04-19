@@ -1,0 +1,101 @@
+#### C/C++ specifics ####
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.ko
+*.obj
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+
+# User settings files
+*.user
+
+
+# Debug files
+*/Debug
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# BoxApp build directory files
+*/build/*
+
+# Eclipse workspace
+*/.metadata/*
+
+# CubeMX generated
+*.mxproject
+*/CubeMX/*
+!/CubeMX/*.ioc
+
+# Qt-es
+object_script.*.Release
+object_script.*.Debug
+*_plugin_import.cpp
+.qmake.cache
+.qmake.stash
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+*.moc
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+*.qmlc
+*.jsc
+Makefile*
+*build-*
+
+# Qt unit tests
+target_wrapper.*
+
+# QtCreator
+*.autosave
+
+# QtCreator CMake
+CMakeLists.txt.user*
