@@ -16,7 +16,7 @@ public:
     MainLayout(QWidget *drawingArea, QWidget *parent = nullptr);
 
     // GETTERS
-    QAction* getCreateAction() const { return m_createAction; }
+    QAction* getCreateAction() const { return m_newAction; }
     QAction* getOpenAction() const { return m_openAction; }
     QList<QAction*>& getSaveAsActions()  { return m_saveAsActions; }
     QAction* getPenColorAction() const { return m_penColorAction; }
@@ -46,7 +46,7 @@ private:
     QMenu *m_helpMenu;
 
     // ACTIONS inside the MENUS
-    QAction *m_createAction;
+    QAction *m_newAction;
     QAction *m_openAction;
     QList<QAction*> m_saveAsActions;  // this is the saveAsMenu = it is the LIST of FILE.formats to be saved
     QAction *m_penColorAction;

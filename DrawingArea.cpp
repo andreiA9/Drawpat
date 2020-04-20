@@ -1,7 +1,7 @@
 #include <QtWidgets>
 #include "DrawingArea.h"
 
-DrawingArea::DrawingArea(QWidget *parent)
+DrawingView::DrawingView(QWidget *parent)
     : QWidget(parent)
 {
     setAttribute(Qt::WA_StaticContents);
@@ -11,12 +11,7 @@ DrawingArea::DrawingArea(QWidget *parent)
     m_penColor = Qt::blue;
 }
 
-void DrawingArea::setFileName(QString fileName)
-{
-    m_fileName = fileName;
-}
-
-bool DrawingArea::openImage(const QString &fileName)
+bool DrawingView::openImage(const QString &fileName)
 {
     QImage loadedImage;
     if (!loadedImage.load(fileName))
@@ -30,12 +25,12 @@ bool DrawingArea::openImage(const QString &fileName)
     return true;
 }
 
-bool DrawingArea::saveImage(const char *fileFormat)
+bool DrawingView::saveImage(QString &fileName, const char *fileFormat)
 {
     QImage visibleImage = m_image;
     resizeImage(&visibleImage, size());
 
-    if (visibleImage.save(m_fileName, fileFormat))
+    if (visibleImage.save(fileName, fileFormat))
     {
         m_isModified = false;
         return true;
@@ -46,24 +41,24 @@ bool DrawingArea::saveImage(const char *fileFormat)
     }
 }
 
-void DrawingArea::setPenColor(const QColor &newColor)
+void DrawingView::setPenColor(const QColor &newColor)
 {
     m_penColor = newColor;
 }
 
-void DrawingArea::setPenWidth(int newWidth)
+void DrawingView::setPenWidth(int newWidth)
 {
     m_penWidth = newWidth;
 }
 
-void DrawingArea::clearImage()
+void DrawingView::clearImage()
 {
     m_image.fill(qRgb(255, 255, 255));
     m_isModified = true;
     update();
 }
 
-void DrawingArea::mousePressEvent(QMouseEvent *event)
+void DrawingView::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
     {
@@ -72,7 +67,7 @@ void DrawingArea::mousePressEvent(QMouseEvent *event)
     }
 }
 
-void DrawingArea::mouseMoveEvent(QMouseEvent *event)
+void DrawingView::mouseMoveEvent(QMouseEvent *event)
 {
     if ((event->buttons() & Qt::LeftButton) && m_isDrawingAllowed)
     {
@@ -80,7 +75,7 @@ void DrawingArea::mouseMoveEvent(QMouseEvent *event)
     }
 }
 
-void DrawingArea::mouseReleaseEvent(QMouseEvent *event)
+void DrawingView::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton && m_isDrawingAllowed)
     {
@@ -89,14 +84,14 @@ void DrawingArea::mouseReleaseEvent(QMouseEvent *event)
     }
 }
 
-void DrawingArea::paintEvent(QPaintEvent *event)
+void DrawingView::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
     QRect dirtyRect = event->rect();
     painter.drawImage(dirtyRect, m_image, dirtyRect);
 }
 
-void DrawingArea::resizeEvent(QResizeEvent *event)
+void DrawingView::resizeEvent(QResizeEvent *event)
 {
     const int WIDTH_PADDING = 50;
     const int HEIGHT_PADDING = 50;
@@ -116,7 +111,7 @@ void DrawingArea::resizeEvent(QResizeEvent *event)
     QWidget::resizeEvent(event);
 }
 
-void DrawingArea::drawLineTo(const QPoint &endPoint)
+void DrawingView::drawLineTo(const QPoint &endPoint)
 {
     QPainter painter(&m_image);
     painter.setPen(QPen(m_penColor, m_penWidth, Qt::SolidLine, Qt::RoundCap,
@@ -130,7 +125,7 @@ void DrawingArea::drawLineTo(const QPoint &endPoint)
     m_lastPoint = endPoint;
 }
 
-void DrawingArea::resizeImage(QImage *image, const QSize &newSize)
+void DrawingView::resizeImage(QImage *image, const QSize &newSize)
 {
     if (image->size() == newSize)
         return;
@@ -140,25 +135,4 @@ void DrawingArea::resizeImage(QImage *image, const QSize &newSize)
     QPainter painter(&newImage);
     painter.drawImage(QPoint(0, 0), *image);
     *image = newImage;
-}
-
-bool DrawingArea::saveFile(const QByteArray format)
-{
-    QString initialPath = QDir::currentPath() + '/' + m_fileName + '.' + format;
-    QString fileName = QFileDialog::getSaveFileName(this,
-                                                    initialPath,
-                                                    tr("%1 Files (*.%2);; All FIles(*)")
-                                                    .arg(QString::fromLatin1(format.toUpper()))
-                                                    .arg(QString::fromLatin1(format)));
-
-    m_fileName = fileName;
-
-    if (fileName.isEmpty())
-    {
-        return false;
-    }
-    else
-    {
-        return saveImage(format.constData());
-    }
 }

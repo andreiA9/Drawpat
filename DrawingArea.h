@@ -4,8 +4,7 @@
 #include <QWidget>
 #include <QMouseEvent>
 #include <QPainter>
-#include <QDir>
-#include <QFileDialog>
+
 
 /** \brief Getter needed when the User modifies the Image without changing it
   * \param level an integer setting how useful to be
@@ -13,21 +12,18 @@
   */
 
 
-class DrawingArea : public QWidget
+class DrawingView : public QWidget
 {
     Q_OBJECT
 
 public:
-    DrawingArea(QWidget *parent = nullptr);
+    DrawingView(QWidget *parent = nullptr);
 
     bool openImage(const QString &fileName);
 //    bool saveImage(const char *format);
-    bool saveImage(const char *fileFormat);
+    bool saveImage(QString &fileName, const char *fileFormat);
     void setPenColor(const QColor &color);
     void setPenWidth(int width);
-
-    // MODULE FUNCTIONS
-    bool saveFile(const QByteArray fileFormat);
 
     /** \brief Getter needed when the User modifies the Image without changing it
       * \return true - if the image was modified
@@ -35,7 +31,6 @@ public:
     bool isModified() const { return m_isModified; }
     QColor getPenColor() const { return m_penColor; }
     int getPenWidth() const { return m_penWidth; }
-    void setFileName(QString fileName);
 
 public slots:
     /** \brief clears the AREA=drawing
@@ -64,14 +59,13 @@ private:
     void resizeImage(QImage *image, const QSize &newSize);
 
 private:
-    bool m_isModified;
     bool m_isDrawingAllowed;
+    bool m_isModified;
 
     QImage m_image;
     QPoint m_lastPoint;
     QColor m_penColor;
     int m_penWidth;
-    QString m_fileName;
 };
 
 #endif // DRAWINGAREA_H

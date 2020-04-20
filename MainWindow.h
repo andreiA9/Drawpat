@@ -5,18 +5,18 @@
 #include <QWidget>
 #include <QImageWriter>
 #include <QFileDialog>
-#include <QColorDialog>
-#include <QInputDialog>
 #include <QMessageBox>
 
+// QT
 #include <QList>
 
+// USER-DEFINED
 #include "MainLayout.h"
-#include "DrawingArea.h"
+#include "EditorModule.h"
 
 
 
-class DrawingArea;
+class DrawingView;
 
 
 QT_BEGIN_NAMESPACE
@@ -42,10 +42,6 @@ protected:
 private slots:
     // FUNCTIONS = IMAGE
 
-    /** \brief is creating a new file
-      */
-    void create();
-
     /** \brief check if changes have been made before our last save
       *        before opening a FILE.new
       */
@@ -56,10 +52,6 @@ private slots:
       */
     void save();
 
-    // FUNCTIONS = PEN
-    /** \brief the color is received from the DIALOG BOX<with the
-      *        color to be selected=this from a Circle=colors
-      */
     void editPenColor();
     void editPenWidth();
 
@@ -80,6 +72,6 @@ private:
 private:
     Ui::MainWindow *ui;
     MainLayout *m_mainLayout;
-    DrawingArea *m_drawingArea;
+    EditorModule * m_editorModule;
 };
 #endif // MAINWINDOW_H

@@ -14,8 +14,8 @@ MainLayout::MainLayout(QWidget *drawingArea, QWidget *parent)
 
 void MainLayout::createActions()
 {
-    m_createAction = new QAction(tr("New"), this);
-    m_createAction->setShortcuts(QKeySequence::New);
+    m_newAction = new QAction(tr("&New"), this);
+    m_newAction->setShortcuts(QKeySequence::New);
 
     m_openAction = new QAction(tr("&Open"), this);
     m_openAction->setShortcut(QKeySequence::Open);
@@ -58,6 +58,7 @@ void MainLayout::addMenuBarButtons(QMenuBar* menuBar)
     }
 
     m_fileMenu = new QMenu(tr("&File"), parentWidget());
+    m_fileMenu->addAction(m_newAction);
     m_fileMenu->addAction(m_openAction);
     m_fileMenu->addMenu(m_saveAsMenu);
     // will add "-----------------" to the MENU
