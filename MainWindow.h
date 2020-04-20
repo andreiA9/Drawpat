@@ -1,7 +1,16 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+// QT WIDGETS
 #include <QMainWindow>
+#include <QWidget>
+#include <QGridLayout>
+#include <QImageWriter>
+#include <QFileDialog>
+#include <QColorDialog>
+#include <QInputDialog>
+#include <QMessageBox>
+
 #include <QList>
 
 #include "DrawingArea.h"
@@ -15,7 +24,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class MainWindow : public QWidget
 {
     Q_OBJECT
 
@@ -59,8 +68,17 @@ private slots:
     void showAbout();
 
 private:
+    /** \brief will create the ACTIONS for each MENU.BUTTON
+      */
     void createActions();
-    void createMenus();
+
+    /** \brief will create the MENUBAR<that contains many BUTTONS
+      */
+    void createMenuBar(QGridLayout *layout);
+
+    /** \brief will create the BUTTONS of the MENUBAR
+      */
+    void addMenuBarButtons(QMenuBar *menuBar);
 
     /** \brief the user cannot[0 = open a file/1 = close the application]
       *        if the current file was not saved

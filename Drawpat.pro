@@ -19,20 +19,20 @@ SOURCES += \
     DrawingArea.cpp \
     EditorModule.cpp \
     MainMenu.cpp \
-    main.cpp \
-    Mainwindow.cpp
+    MainWindow.cpp \
+    main.cpp
 
 HEADERS += \
     DrawingArea.h \
     EditorModule.h \
     MainMenu.h \
-    Mainwindow.h
+    MainWindow.h
 
 FORMS += \
     mainwindow.ui
 
 TRANSLATIONS += \
-    ImageDrawer_ro_RO.ts
+    Drawpat_ro_RO.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

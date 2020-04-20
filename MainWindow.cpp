@@ -1,29 +1,28 @@
 #include "Mainwindow.h"
 #include "ui_mainwindow.h"
 
-// QT
-#include <QFileDialog>
-#include <QColorDialog>
-#include <QInputDialog>
-#include <QMessageBox>
-#include <QImageWriter>
-
 
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
-
-    m_drawingArea = new DrawingArea;
-
     // this is the Widget that will be shown when drawing
-    setCentralWidget(m_drawingArea);
+    m_drawingArea = new DrawingArea;
+    m_drawingArea->resize(1000, 500);
+
+    QGridLayout *mainLayout = new QGridLayout;
+    mainLayout->setColumnStretch(0, 1);
+    mainLayout->setColumnStretch(3, 1);
+    // this means that the DrawingArea will expand on all-columns
+    // of the LAYOUT
+    mainLayout->addWidget(m_drawingArea, 0, 0, 1, 4);
+    // setting the WIDGET.LAYOUT<a WIDGET will contain 1MAIN-LAYOUT
+    // the same as QMainWindow that contains a single 1MAIN-LAYOUT
+    setLayout(mainLayout);
+
     setWindowTitle(tr("Drawpat"));
 
     createActions();
-    createMenus();
+    createMenuBar(mainLayout);
 
     QWidget::resize(500, 500);
 }
@@ -42,6 +41,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     }
     else
     {
+        // the event will be refused
         event->ignore();
     }
 }
@@ -134,7 +134,7 @@ void MainWindow::createActions()
 
     m_exitAction = new QAction(tr("&Exit"), this);
     m_exitAction->setShortcuts(QKeySequence::Quit);
-    connect(m_exitAction, &QAction::triggered, this, &QMainWindow::close);
+    connect(m_exitAction, &QAction::triggered, this, &QWidget::close);
 
     m_penColorAction = new QAction(tr("&Pen color"), this);
     connect(m_penColorAction, &QAction::triggered, this, &MainWindow::editPenColor);
@@ -150,7 +150,15 @@ void MainWindow::createActions()
     connect(m_aboutAction, &QAction::triggered, this, &MainWindow::showAbout);
 }
 
-void MainWindow::createMenus()
+void MainWindow::createMenuBar(QGridLayout *layout)
+{
+    QMenuBar* menuBar = new QMenuBar();
+    addMenuBarButtons(menuBar);
+
+    layout->setMenuBar(menuBar);
+}
+
+void MainWindow::addMenuBarButtons(QMenuBar* menuBar)
 {
     m_saveAsMenu = new QMenu(tr("&Save as"), this);
     for (QAction *action : m_saveAsActions)
@@ -174,10 +182,9 @@ void MainWindow::createMenus()
     m_helpMenu = new QMenu(tr("&Help"), this);
     m_helpMenu->addAction(m_aboutAction);
 
-    QMenuBar *windowMenuBar = menuBar();
-    windowMenuBar->addMenu(m_fileMenu);
-    windowMenuBar->addMenu(m_optionMenu);
-    windowMenuBar->addMenu(m_helpMenu);
+    menuBar->addMenu(m_fileMenu);
+    menuBar->addMenu(m_optionMenu);
+    menuBar->addMenu(m_helpMenu);
 }
 
 bool MainWindow::trySave()
@@ -198,7 +205,11 @@ bool MainWindow::trySave()
         {
             retVal = m_drawingArea->saveFile("png");
         }
-        else
+        else if (option == QMessageBox::Discard)
+        {
+            retVal = true;
+        }
+        else if (option == QMessageBox::Cancel)
         {
             retVal = false;
         }
