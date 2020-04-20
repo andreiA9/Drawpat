@@ -2,9 +2,7 @@
 #define MAINWINDOW_H
 
 // QT WIDGETS
-#include <QMainWindow>
 #include <QWidget>
-#include <QGridLayout>
 #include <QImageWriter>
 #include <QFileDialog>
 #include <QColorDialog>
@@ -13,6 +11,7 @@
 
 #include <QList>
 
+#include "MainLayout.h"
 #include "DrawingArea.h"
 
 
@@ -68,17 +67,9 @@ private slots:
     void showAbout();
 
 private:
-    /** \brief will create the ACTIONS for each MENU.BUTTON
+    /** \brief the CONNECTIONS from MainLayout are made here
       */
-    void createActions();
-
-    /** \brief will create the MENUBAR<that contains many BUTTONS
-      */
-    void createMenuBar(QGridLayout *layout);
-
-    /** \brief will create the BUTTONS of the MENUBAR
-      */
-    void addMenuBarButtons(QMenuBar *menuBar);
+    void initializeConnects();
 
     /** \brief the user cannot[0 = open a file/1 = close the application]
       *        if the current file was not saved
@@ -88,20 +79,7 @@ private:
 
 private:
     Ui::MainWindow *ui;
+    MainLayout *m_mainLayout;
     DrawingArea *m_drawingArea;
-    // MENU ITEMS
-    QMenu *m_saveAsMenu;
-    QMenu *m_fileMenu;
-    QMenu *m_optionMenu;
-    QMenu *m_helpMenu;
-    // ACTIONS inside the MENUS
-    QAction *m_createAction;
-    QAction *m_openAction;
-    QList<QAction*> m_saveAsActions;  // this is the saveAsMenu = it is the LIST of FILE.formats to be saved
-    QAction *m_penColorAction;
-    QAction *m_penWidthAction;
-    QAction *m_clearDrawingAreaAction;
-    QAction *m_aboutAction;
-    QAction *m_exitAction;
 };
 #endif // MAINWINDOW_H

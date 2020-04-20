@@ -18,14 +18,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     DrawingArea.cpp \
     EditorModule.cpp \
-    MainMenu.cpp \
+    MainLayout.cpp \
     MainWindow.cpp \
     main.cpp
 
 HEADERS += \
     DrawingArea.h \
     EditorModule.h \
-    MainMenu.h \
+    MainLayout.h \
     MainWindow.h
 
 FORMS += \

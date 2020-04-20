@@ -9,22 +9,18 @@ MainWindow::MainWindow(QWidget *parent)
     m_drawingArea = new DrawingArea;
     m_drawingArea->resize(1000, 500);
 
-    QGridLayout *mainLayout = new QGridLayout;
-    mainLayout->setColumnStretch(0, 1);
-    mainLayout->setColumnStretch(3, 1);
-    // this means that the DrawingArea will expand on all-columns
-    // of the LAYOUT
-    mainLayout->addWidget(m_drawingArea, 0, 0, 1, 4);
+//    QGridLayout *mainLayout = new QGridLayout;
+    m_mainLayout = new MainLayout(m_drawingArea, this);
+
     // setting the WIDGET.LAYOUT<a WIDGET will contain 1MAIN-LAYOUT
     // the same as QMainWindow that contains a single 1MAIN-LAYOUT
-    setLayout(mainLayout);
+    setLayout(m_mainLayout);
 
+    // SET WINDOW PARAMETERS
     setWindowTitle(tr("Drawpat"));
-
-    createActions();
-    createMenuBar(mainLayout);
-
     QWidget::resize(500, 500);
+
+    initializeConnects();
 }
 
 MainWindow::~MainWindow()
@@ -113,78 +109,24 @@ void MainWindow::showAbout()
                        tr("<p>The <b>Scribble</b> application</p>"));
 }
 
-void MainWindow::createActions()
+void MainWindow::initializeConnects()
 {
-    m_createAction = new QAction(tr("New"), this);
-    m_createAction->setShortcuts(QKeySequence::New);
-    connect(m_createAction, &QAction::triggered, this, &MainWindow::create);
+    connect(m_mainLayout->getCreateAction(), &QAction::triggered, this, &MainWindow::create);
+    connect(m_mainLayout->getOpenAction(), &QAction::triggered, this, &MainWindow::open);
 
-    m_openAction = new QAction(tr("&Open"), this);
-    m_openAction->setShortcut(QKeySequence::Open);
-    connect(m_openAction, &QAction::triggered, this, &MainWindow::open);
-
+    QList<QAction *> &saveAsActions = m_mainLayout->getSaveAsActions();
+    int i = 0;
     for (QByteArray format : QImageWriter::supportedImageFormats())
     {
-        QString text = tr("%1...").arg(QString(format.toUpper()));
-        QAction *action = new QAction(text, this);
-        action->setData(format);
-        connect(action, &QAction::triggered, this, &MainWindow::save);
-        m_saveAsActions.append(action);
+        connect(saveAsActions.at(i), &QAction::triggered, this, &MainWindow::save);
+        i++;
     }
 
-    m_exitAction = new QAction(tr("&Exit"), this);
-    m_exitAction->setShortcuts(QKeySequence::Quit);
-    connect(m_exitAction, &QAction::triggered, this, &QWidget::close);
-
-    m_penColorAction = new QAction(tr("&Pen color"), this);
-    connect(m_penColorAction, &QAction::triggered, this, &MainWindow::editPenColor);
-
-    m_penWidthAction = new QAction(tr("&Pen width"), this);
-    connect(m_penWidthAction, &QAction::triggered, this, &MainWindow::editPenWidth);
-
-    m_clearDrawingAreaAction = new QAction(tr("&Clear screen"), this);
-//    m_clearScreenAction->setShortcuts(tr("Ctrl + L"));
-    connect(m_clearDrawingAreaAction, &QAction::triggered, m_drawingArea, &DrawingArea::clearImage);
-
-    m_aboutAction = new QAction(tr("&About"), this);
-    connect(m_aboutAction, &QAction::triggered, this, &MainWindow::showAbout);
-}
-
-void MainWindow::createMenuBar(QGridLayout *layout)
-{
-    QMenuBar* menuBar = new QMenuBar();
-    addMenuBarButtons(menuBar);
-
-    layout->setMenuBar(menuBar);
-}
-
-void MainWindow::addMenuBarButtons(QMenuBar* menuBar)
-{
-    m_saveAsMenu = new QMenu(tr("&Save as"), this);
-    for (QAction *action : m_saveAsActions)
-    {
-        m_saveAsMenu->addAction(action);
-    }
-
-    m_fileMenu = new QMenu(tr("&File"), this);
-    m_fileMenu->addAction(m_openAction);
-    m_fileMenu->addMenu(m_saveAsMenu);
-    // will add "-----------------" to the MENU
-    m_fileMenu->addSeparator();
-    m_fileMenu->addAction(m_exitAction);
-
-    m_optionMenu = new QMenu(tr("&Option"), this);
-    m_optionMenu->addAction(m_penColorAction);
-    m_optionMenu->addAction(m_penWidthAction);
-    m_optionMenu->addSeparator();
-    m_optionMenu->addAction(m_clearDrawingAreaAction);
-
-    m_helpMenu = new QMenu(tr("&Help"), this);
-    m_helpMenu->addAction(m_aboutAction);
-
-    menuBar->addMenu(m_fileMenu);
-    menuBar->addMenu(m_optionMenu);
-    menuBar->addMenu(m_helpMenu);
+    connect(m_mainLayout->getExitAction(), &QAction::triggered, this, &QWidget::close);
+    connect(m_mainLayout->getPenColorAction(), &QAction::triggered, this, &MainWindow::editPenColor);
+    connect(m_mainLayout->getPenWidthAction(), &QAction::triggered, this, &MainWindow::editPenWidth);
+    connect(m_mainLayout->getClearDrawingAreaAction(), &QAction::triggered, m_drawingArea, &DrawingArea::clearImage);
+    connect(m_mainLayout->getAboutAction(), &QAction::triggered, this, &MainWindow::showAbout);
 }
 
 bool MainWindow::trySave()
