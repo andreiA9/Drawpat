@@ -5,29 +5,48 @@
 
 MainWindow::MainWindow(QWidget *parent)
 {
+    Events *events = new Events;
+
     // this is the Widget that will be shown when drawing
 //    QWidget *drawingArea = new DrawingView;
-    DrawingView *drawingArea = new DrawingView;
+    DrawingView *drawingArea = new DrawingView(events, this);
     drawingArea->resize(1000, 500);
+    m_editorModule = new EditorModule(drawingArea, events);
 
     m_mainLayout = new MainLayout(drawingArea, this);
     // setting the WIDGET.LAYOUT<a WIDGET will contain 1MAIN-LAYOUT
     // the same as QMainWindow that contains a single 1MAIN-LAYOUT
     setLayout(m_mainLayout);
 
-    m_editorModule = new EditorModule(drawingArea);
-
     // SET WINDOW PARAMETERS
     setWindowTitle(tr("Drawpat"));
     QWidget::resize(500, 500);
 
     initializeConnects();
+
+    drawButton();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
     delete m_editorModule;
+}
+
+void MainWindow::drawButton()
+{
+    // Create the button, make "this" the parent
+    m_button = new QPushButton("My Button", this);
+    // set size and location of the button
+    m_button->setGeometry(QRect(QPoint(100, 100), QSize(100, 30)));
+
+    // Connect button signal to appropriate slot
+    connect(m_button, &QPushButton::released, this, &MainWindow::handleButton);
+}
+
+void MainWindow::handleButton()
+{
+    m_editorModule->rotationTriggered(true);
 }
 
 void MainWindow::initializeConnects()

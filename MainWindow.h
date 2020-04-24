@@ -7,6 +7,8 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
+#include <QPushButton>
+
 // QT
 #include <QList>
 
@@ -58,7 +60,11 @@ private slots:
     // FUNCTIONS = ABOUT
     void showAbout();
 
+    void handleButton();
+
 private:
+    void drawButton();
+
     /** \brief the CONNECTIONS from MainLayout are made here
       */
     void initializeConnects();
@@ -73,5 +79,6 @@ private:
     Ui::MainWindow *ui;
     MainLayout *m_mainLayout;
     EditorModule * m_editorModule;
+    QPushButton *m_button;
 };
 #endif // MAINWINDOW_H

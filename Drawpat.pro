@@ -16,15 +16,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    DrawingArea.cpp \
+    DrawingView.cpp \
     EditorModule.cpp \
+    Events.cpp \
     MainLayout.cpp \
     MainWindow.cpp \
     main.cpp
 
 HEADERS += \
-    DrawingArea.h \
+    DrawingView.h \
     EditorModule.h \
+    Events.h \
     MainLayout.h \
     MainWindow.h
 

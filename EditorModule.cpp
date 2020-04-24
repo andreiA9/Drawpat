@@ -2,19 +2,10 @@
 
 
 
-EditorModule::EditorModule(DrawingView *drawingView)
+EditorModule::EditorModule(DrawingView *drawingView, Events *events)
 {
     m_drawingView = drawingView;
-}
-
-bool EditorModule::isDirty() const
-{
-    return m_drawingView->isModified();
-}
-
-void EditorModule::setFileName(const QString &fileName)
-{
-    m_fileName = fileName;
+    m_events = events;
 }
 
 void EditorModule::setPenColor(const QColor &color)
@@ -25,6 +16,11 @@ void EditorModule::setPenColor(const QColor &color)
 void EditorModule::setPenWidth(int width)
 {
     m_drawingView->setPenWidth(width);
+}
+
+void EditorModule::rotationTriggered(bool rotated)
+{
+    m_events->setImageRoted(rotated);
 }
 
 void EditorModule::create()

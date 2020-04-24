@@ -1,9 +1,13 @@
 #ifndef DRAWINGAREA_H
 #define DRAWINGAREA_H
 
+// WIDGETS
 #include <QWidget>
 #include <QMouseEvent>
 #include <QPainter>
+
+// USER-DEFINED
+#include "Events.h"
 
 
 /** \brief Getter needed when the User modifies the Image without changing it
@@ -17,7 +21,7 @@ class DrawingView : public QWidget
     Q_OBJECT
 
 public:
-    DrawingView(QWidget *parent = nullptr);
+    DrawingView(Events *events, QWidget *parent = nullptr);
 
     bool openImage(const QString &fileName);
 //    bool saveImage(const char *format);
@@ -31,6 +35,7 @@ public:
     bool isModified() const { return m_isModified; }
     QColor getPenColor() const { return m_penColor; }
     int getPenWidth() const { return m_penWidth; }
+
 
 public slots:
     /** \brief clears the AREA=drawing
@@ -58,9 +63,12 @@ private:
     void drawLineTo(const QPoint &endPoint);
     void resizeImage(QImage *image, const QSize &newSize);
 
+    void rotateTo90Degrees(QImage &dstImg);
+
 private:
     bool m_isDrawingAllowed;
     bool m_isModified;
+    Events *m_events;
 
     QImage m_image;
     QPoint m_lastPoint;

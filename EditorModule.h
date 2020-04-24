@@ -12,7 +12,8 @@
 #include <QTranslator>
 
 // USER-DEFINED
-#include "DrawingArea.h"
+#include "Events.h"
+#include "DrawingView.h"
 
 
 
@@ -22,20 +23,24 @@ class EditorModule : public QObject
     Q_OBJECT
 
 public:
-    EditorModule(DrawingView *drawingView);
+    EditorModule(DrawingView *drawingView, Events *events);
 
     /** \brief if both{DrawingView/TextEditor} have been modified
       * \return if one from{DrawingView/TextEditor} has been modified
       */
-    bool isDirty() const;
+    bool isDirty() const { return m_drawingView->isModified(); }
 
-    void setFileName(const QString &fileName);
-    QString getFileName() const { return m_fileName; }
-
+    void setFileName(const QString &fileName) { m_fileName = fileName; }
     void setPenColor(const QColor &color);
     void setPenWidth(int width);
+
+    QString getFileName() const { return m_fileName; }
     QColor getPenColor() const { return m_drawingView->getPenColor(); }
     int getPenWidth() const { return m_drawingView->getPenWidth(); }
+
+    /** \brief is signaling EVENT=ROTATION to class=Events
+      */
+    void rotationTriggered(bool rotated);
 
     /** \brief is creating a new FILE
       */
@@ -62,6 +67,7 @@ public:
 private:
     QString m_fileName;
     DrawingView *m_drawingView;
+    Events *m_events;
 };
 
 #endif // EDITORMODULE_H

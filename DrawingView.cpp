@@ -1,7 +1,7 @@
 #include <QtWidgets>
-#include "DrawingArea.h"
+#include "DrawingView.h"
 
-DrawingView::DrawingView(QWidget *parent)
+DrawingView::DrawingView(Events *events, QWidget *parent)
     : QWidget(parent)
 {
     setAttribute(Qt::WA_StaticContents);
@@ -9,6 +9,8 @@ DrawingView::DrawingView(QWidget *parent)
     m_isDrawingAllowed = false;
     m_penWidth = 1;
     m_penColor = Qt::blue;
+
+    m_events = events;
 }
 
 bool DrawingView::openImage(const QString &fileName)
@@ -88,7 +90,42 @@ void DrawingView::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
     QRect dirtyRect = event->rect();
-    painter.drawImage(dirtyRect, m_image, dirtyRect);
+//    painter.translate(+66, 66);
+
+    if (m_events->getImageRotated())
+    {
+        QImage dstImg;
+        rotateTo90Degrees(dstImg);
+
+        painter.drawImage(dirtyRect, dstImg, dirtyRect);
+
+        update();
+    }
+    else
+    {
+        painter.drawImage(dirtyRect, m_image, dirtyRect);
+    }
+}
+
+void DrawingView::rotateTo90Degrees(QImage &dstImg)
+{
+    QMatrix matrix;
+//        matrix.translate(+10.0, +20.0);
+//    matrix.rotate(+15);
+
+    /* EXPLICATIE
+    there needs to be initial translation to do the rotation around the centre of the image RECTANGLE.
+    Move it to the origin, rotate, then move it back. And remember, transformations are applied in
+    reverse order from how you'd expect, given how you specify them in the code. */
+    matrix.translate(dstImg.width() / 2.0 , dstImg.height() / 2.0);
+    matrix.rotate(90);
+    matrix.translate(-dstImg.width() / 2.0 , -dstImg.height() / 2.0);
+
+    dstImg = m_image.transformed(matrix);
+
+    // IDENTICA cu
+//        painter.setMatrix(matrix);
+//        painter.drawImage(dirtyRect, m_image, dirtyRect);
 }
 
 void DrawingView::resizeEvent(QResizeEvent *event)
