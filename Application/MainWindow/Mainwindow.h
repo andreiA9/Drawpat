@@ -14,16 +14,16 @@
 
 // USER-DEFINED
 #include "MainLayout.h"
-#include "EditorModule.h"
+#include "../EditorModule/EditorModule.h"
 
 
 
 class DrawingView;
 
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
+//QT_BEGIN_NAMESPACE
+//namespace Ui { class MainWindow; }
+//QT_END_NAMESPACE
 
 class MainWindow : public QWidget
 {
@@ -76,7 +76,7 @@ private:
     bool saveFile(const QByteArray &fileFormat);
 
 private:
-    Ui::MainWindow *ui;
+//    Ui::MainWindow *ui;
     MainLayout *m_mainLayout;
     EditorModule * m_editorModule;
     QPushButton *m_button;

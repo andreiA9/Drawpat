@@ -1,0 +1,4 @@
+daca iti da EROAREA ca
+Could not connect to CMake server > este eroare de Qt/QtCreator
+SOLUTIE
+nu schimba NUMELE la FOLDER = Drawpat-cmake

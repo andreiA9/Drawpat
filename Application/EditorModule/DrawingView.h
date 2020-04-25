@@ -32,9 +32,9 @@ public:
     /** \brief Getter needed when the User modifies the Image without changing it
       * \return true - if the image was modified
       */
-    bool isModified() const { return m_isModified; }
-    QColor getPenColor() const { return m_penColor; }
-    int getPenWidth() const { return m_penWidth; }
+    bool inline isModified() const { return m_isModified; }
+    QColor inline getPenColor() const { return m_penColor; }
+    int inline getPenWidth() const { return m_penWidth; }
 
 
 public slots:

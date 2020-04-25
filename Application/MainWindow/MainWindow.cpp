@@ -1,5 +1,5 @@
 #include "Mainwindow.h"
-#include "ui_mainwindow.h"
+//#include "ui_mainwindow.h"
 
 
 
@@ -29,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    delete ui;
+//    delete ui;
     delete m_editorModule;
 }
 
