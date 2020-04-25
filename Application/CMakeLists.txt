@@ -4,15 +4,12 @@ cmake_minimum_required(VERSION 2.8)
 include_directories(${Qt5Widgets_INCLUDE_DIRS} ${QtQml_INCLUDE_DIRS})
 
 set(MainWindow_SRC
-    MainWindow/MainWindow.cpp
-
+    MainWindow/ApplicationWindow.cpp
+    MainWindow/ApplicationWindow.h
     MainWindow/MainLayout.cpp
-
-    )
-
-set(MainWindowHeaders_SRC
-    MainWindow/MainWindow.h
     MainWindow/MainLayout.h
+    MainWindow/CentralWidget.cpp
+    MainWindow/CentralWidget.h
     )
 
 set(EditorModule_SRC
@@ -36,6 +33,7 @@ set(Misc_SRC
 # file(TOUCH Qml/TabButton.qml)
 # RENAME
 # file(RENAME Qml/TabButton.qml Qml/TabButtonBackground.qml)
+
 
 add_executable(Drawpat WIN32
     main.cpp

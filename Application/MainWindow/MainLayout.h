@@ -4,6 +4,7 @@
 // QT WIDGETS
 #include <QGridLayout>
 #include <QMenuBar>
+#include <QStatusBar>
 #include <QImageWriter>
 
 
@@ -24,6 +25,8 @@ public:
     QAction* getClearDrawingAreaAction() const { return m_clearDrawingAreaAction; }
     QAction* getAboutAction() const { return m_aboutAction; }
     QAction* getExitAction() const { return m_exitAction; }
+
+    void setStatusBar(QStatusBar *statusbar);
 
 private:
     /** \brief will create the ACTIONS for each MENU.BUTTON
@@ -54,6 +57,8 @@ private:
     QAction *m_clearDrawingAreaAction;
     QAction *m_aboutAction;
     QAction *m_exitAction;
+
+    QStatusBar *m_statusbar;
 };
 
 #endif // MAINLAYOUT_H

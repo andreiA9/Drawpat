@@ -78,3 +78,8 @@ void MainLayout::addMenuBarButtons(QMenuBar* menuBar)
     menuBar->addMenu(m_optionMenu);
     menuBar->addMenu(m_helpMenu);
 }
+
+void MainLayout::setStatusBar(QStatusBar *statusBar)
+{
+    m_statusbar = statusBar;
+}

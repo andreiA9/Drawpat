@@ -1,12 +1,11 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef ApplicationWindow_H
+#define ApplicationWindow_H
 
 // QT WIDGETS
 #include <QWidget>
 #include <QImageWriter>
 #include <QFileDialog>
 #include <QMessageBox>
-
 #include <QPushButton>
 
 // QT
@@ -22,16 +21,16 @@ class DrawingView;
 
 
 //QT_BEGIN_NAMESPACE
-//namespace Ui { class MainWindow; }
+//namespace Ui { class ApplicationWindow; }
 //QT_END_NAMESPACE
 
-class MainWindow : public QWidget
+class ApplicationWindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    ApplicationWindow(QWidget *parent = nullptr);
+    ~ApplicationWindow();
 
 protected:
     /** \brief this is for preventing the USER to close the APPLICATION
@@ -67,7 +66,15 @@ private:
 
     /** \brief the CONNECTIONS from MainLayout are made here
       */
-    void initializeConnects();
+    void initializeMenuConnects();
+
+    /** \brief the interraction BUTTONS are put here
+      */
+    void initializeUpperButtons();
+
+    /** \brief add the STATUS BAR to the MainLayout
+      */
+    void initializeStatusBar();
 
     /** \brief the user cannot[0 = open a file/1 = close the application]
       *        if the current file was not saved
@@ -76,9 +83,9 @@ private:
     bool saveFile(const QByteArray &fileFormat);
 
 private:
-//    Ui::MainWindow *ui;
+//    Ui::ApplicationWindow *ui;
     MainLayout *m_mainLayout;
     EditorModule * m_editorModule;
     QPushButton *m_button;
 };
-#endif // MAINWINDOW_H
+#endif // ApplicationWindow_H

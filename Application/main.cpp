@@ -1,4 +1,4 @@
-#include "MainWindow/MainWindow.h"
+#include "MainWindow/ApplicationWindow.h"
 
 #include <QApplication>
 
@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     // this shows the MainWindow
-    MainWindow w;
+    ApplicationWindow w;
     w.show();
 
     // this processes Messages for the MainWindow
