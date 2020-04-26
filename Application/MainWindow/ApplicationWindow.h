@@ -13,7 +13,7 @@
 #include <QList>
 
 // USER-DEFINED
-#include "MainLayout.h"
+#include "WindowContainer.h"
 #include "../EditorModule/EditorModule.h"
 
 

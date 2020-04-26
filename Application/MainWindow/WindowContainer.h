@@ -31,8 +31,6 @@ public:
     void initializeMainLayout();
 
 protected:
-    void drawButton();
-
     /** \brief will create the ACTIONS for each MENU.BUTTON
       */
     void createActions();

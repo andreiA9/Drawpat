@@ -1,4 +1,4 @@
-#include "MainLayout.h"
+#include "WindowContainer.h"
 
 WindowContainer::WindowContainer(QWidget *parent)
 {
@@ -42,14 +42,6 @@ WindowContainer::~WindowContainer()
     // in EXMPLUL.lor > nu exista COD pentru stergerea acestor OBIECTE
     // pentru ca el a fost adaugat la QGridLayout
 //    delete m_horizontalLayout;
-}
-
-void WindowContainer::drawButton()
-{
-    // Create the button, make "this" the parent
-    m_button = new QPushButton("My Button", this);
-    // set size and location of the button
-    m_button->setGeometry(QRect(QPoint(100, 100), QSize(100, 30)));
 }
 
 void WindowContainer::initializeMainLayout()

@@ -6,8 +6,8 @@ include_directories(${Qt5Widgets_INCLUDE_DIRS} ${QtQml_INCLUDE_DIRS})
 set(MainWindow_SRC
     MainWindow/ApplicationWindow.cpp
     MainWindow/ApplicationWindow.h
-    MainWindow/MainLayout.cpp
-    MainWindow/MainLayout.h
+    MainWindow/WindowContainer.cpp
+    MainWindow/WindowContainer.h
     )
 
 set(EditorModule_SRC

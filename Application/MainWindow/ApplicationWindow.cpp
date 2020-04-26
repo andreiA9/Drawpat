@@ -23,8 +23,6 @@ ApplicationWindow::ApplicationWindow()
     createActions();
     createMenuBar();
 
-    drawButton();
-
     initializeMenuConnects();
 
     initializeButtonsConnects();
@@ -34,16 +32,11 @@ ApplicationWindow::ApplicationWindow()
 
 ApplicationWindow::~ApplicationWindow()
 {
-//    delete ui;
     delete m_editorModule;
 }
 
 void ApplicationWindow::initializeButtonsConnects()
 {
-    // Connect button signal to appropriate slot
-    connect(m_button, &QPushButton::released, this, &ApplicationWindow::handleButton);
-
-//    connect(m_mainLayout->getUpperButton4(), &QPushButton::pressed, this, &ApplicationWindow::handleButton, Qt::DirectConnection);
     connect(m_upperButton4, &QPushButton::released, this, &ApplicationWindow::handleButton);
 }
 
