@@ -1,5 +1,4 @@
 #include "ApplicationWindow.h"
-//#include "ui_mainwindow.h"
 
 
 

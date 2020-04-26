@@ -15,8 +15,12 @@ set(MainWindow_SRC
 set(EditorModule_SRC
     EditorModule/EditorModule.cpp
     EditorModule/EditorModule.h
+    EditorModule/EditorView.cpp
+    EditorModule/EditorView.h
     EditorModule/DrawingView.cpp
     EditorModule/DrawingView.h
+    EditorModule/TextEditor.cpp
+    EditorModule/TextEditor.h
     EditorModule/Events.cpp
     EditorModule/Events.h
     )

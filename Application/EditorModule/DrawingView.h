@@ -1,12 +1,12 @@
 #ifndef DRAWINGAREA_H
 #define DRAWINGAREA_H
 
-// WIDGETS
-#include <QWidget>
+
 #include <QMouseEvent>
 #include <QPainter>
 
 // USER-DEFINED
+#include "EditorView.h"
 #include "Events.h"
 
 
@@ -24,7 +24,6 @@ public:
     DrawingView(Events *events, QWidget *parent = nullptr);
 
     bool openImage(const QString &fileName);
-//    bool saveImage(const char *format);
     bool saveImage(QString &fileName, const char *fileFormat);
     void setPenColor(const QColor &color);
     void setPenWidth(int width);
