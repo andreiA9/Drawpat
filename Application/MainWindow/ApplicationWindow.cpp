@@ -30,12 +30,6 @@ void ApplicationWindow::drawButton()
     // set size and location of the button
     m_button->setGeometry(QRect(QPoint(100, 100), QSize(100, 30)));
 
-//    m_upperButton0 = new QPushButton(this);
-//    m_upperButton1 = new QPushButton(this);
-//    m_upperButton2 = new QPushButton(this);
-//    m_upperButton3 = new QPushButton(this);
-//    m_upperButton4 = new QPushButton(this);
-
     // Connect button signal to appropriate slot
     connect(m_button, &QPushButton::released, this, &ApplicationWindow::handleButton);
 }
@@ -65,10 +59,10 @@ void ApplicationWindow::initializeMainLayout()
 
 void ApplicationWindow::initializeMenuConnects()
 {
-    connect(m_mainLayout->getCreateAction(), &QAction::triggered, m_editorModule, &EditorModule::create);
-    connect(m_mainLayout->getOpenAction(), &QAction::triggered, this, &ApplicationWindow::open);
+    connect(m_mainLayout->m_newAction, &QAction::triggered, m_editorModule, &EditorModule::create);
+    connect(m_mainLayout->m_openAction, &QAction::triggered, this, &ApplicationWindow::open);
 
-    QList<QAction *> &saveAsActions = m_mainLayout->getSaveAsActions();
+    QList<QAction *> &saveAsActions = m_mainLayout->m_saveAsActions;
     int i = 0;
     for (QByteArray format : QImageWriter::supportedImageFormats())
     {
@@ -76,33 +70,29 @@ void ApplicationWindow::initializeMenuConnects()
         i++;
     }
 
-    connect(m_mainLayout->getExitAction(), &QAction::triggered, this, &QWidget::close);
-    connect(m_mainLayout->getPenColorAction(), &QAction::triggered, this, &ApplicationWindow::editPenColor);
-    connect(m_mainLayout->getPenWidthAction(), &QAction::triggered, this, &ApplicationWindow::editPenWidth);
-    connect(m_mainLayout->getClearDrawingAreaAction(), &QAction::triggered, m_editorModule, &EditorModule::clear);
-    connect(m_mainLayout->getAboutAction(), &QAction::triggered, this, &ApplicationWindow::showAbout);
+    connect(m_mainLayout->m_exitAction, &QAction::triggered, this, &QWidget::close);
+    connect(m_mainLayout->m_penColorAction, &QAction::triggered, this, &ApplicationWindow::editPenColor);
+    connect(m_mainLayout->m_penWidthAction, &QAction::triggered, this, &ApplicationWindow::editPenWidth);
+    connect(m_mainLayout->m_clearDrawingAreaAction, &QAction::triggered, m_editorModule, &EditorModule::clear);
+    connect(m_mainLayout->m_aboutAction, &QAction::triggered, this, &ApplicationWindow::showAbout);
 }
 
 void ApplicationWindow::initializeControlButtons()
 {
-    m_upperButton0 = new QPushButton(this);
-    m_upperButton1 = new QPushButton(this);
-    m_upperButton2 = new QPushButton(this);
-    m_upperButton3 = new QPushButton(this);
-    m_upperButton4 = new QPushButton(this);
+    QPushButton *upperButton0 = new QPushButton(this);
+    QPushButton *upperButton1 = new QPushButton(this);
+    QPushButton *upperButton2 = new QPushButton(this);
+    QPushButton *upperButton3 = new QPushButton(this);
+    QPushButton *upperButton4 = new QPushButton(this);
 
-    m_mainLayout->setControlButtons(m_upperButton0,
-                                    m_upperButton1,
-                                    m_upperButton2,
-                                    m_upperButton3,
-                                    m_upperButton4);
-
-    m_upperButton4->setObjectName(QString("pushButton4"));
-    m_upperButton4->setText("Button4");
-    m_upperButton4->setGeometry(QRect(380, 30, 80, 25));
+    m_mainLayout->setControlButtons(upperButton0,
+                                    upperButton1,
+                                    upperButton2,
+                                    upperButton3,
+                                    upperButton4);
 
 //    connect(m_mainLayout->getUpperButton4(), &QPushButton::pressed, this, &ApplicationWindow::handleButton, Qt::DirectConnection);
-    connect(m_upperButton4, &QPushButton::released, this, &ApplicationWindow::handleButton, Qt::DirectConnection);
+    connect(m_mainLayout->m_upperButton4, &QPushButton::released, this, &ApplicationWindow::handleButton, Qt::DirectConnection);
 }
 
 void ApplicationWindow::handleButton()

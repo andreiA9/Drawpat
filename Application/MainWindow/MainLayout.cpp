@@ -58,36 +58,37 @@ void MainLayout::setControlButtons(QPushButton *upperButton0,
     m_upperButton3 = upperButton3;
     m_upperButton4 = upperButton4;
 
-//    m_upperButton0->setObjectName(QString("pushButton0"));
-//    m_upperButton0->setText("Button0");
-//    m_upperButton0->setGeometry(QRect(20, 30, 80, 25));
-//    m_horizontalLayout->addWidget(m_upperButton0);
+    m_upperButton0->setObjectName(QString("pushButton0"));
+    m_upperButton0->setText("Button0");
+    m_upperButton0->setGeometry(QRect(20, 30, 80, 25));
 
-//    m_upperButton1->setObjectName(QString("pushButton1"));
-//    m_upperButton1->setText("Button1");
-//    m_upperButton1->setGeometry(QRect(110, 30, 80, 25));
-//    m_horizontalLayout->addWidget(m_upperButton1);
+    m_upperButton1->setObjectName(QString("pushButton1"));
+    m_upperButton1->setText("Button1");
+    m_upperButton1->setGeometry(QRect(110, 30, 80, 25));
 
-//    m_upperButton2->setObjectName(QString("pushButton2"));
-//    m_upperButton2->setText("Button2");
-//    m_upperButton2->setGeometry(QRect(200, 30, 80, 25));
-//    m_horizontalLayout->addWidget(m_upperButton2);
+    m_upperButton2->setObjectName(QString("pushButton2"));
+    m_upperButton2->setText("Button2");
+    m_upperButton2->setGeometry(QRect(200, 30, 80, 25));
 
-//    m_upperButton3->setObjectName(QString("pushButton3"));
-//    m_upperButton3->setText("Button3");
-//    m_upperButton3->setGeometry(QRect(290, 30, 80, 25));
-//    m_horizontalLayout->addWidget(m_upperButton3);
+    m_upperButton3->setObjectName(QString("pushButton3"));
+    m_upperButton3->setText("Button3");
+    m_upperButton3->setGeometry(QRect(290, 30, 80, 25));
 
-//    m_upperButton4->setObjectName(QString("pushButton4"));
-//    m_upperButton4->setText("Button4");
-//    m_upperButton4->setGeometry(QRect(380, 30, 80, 25));
-//    m_horizontalLayout->addWidget(m_upperButton4);
+    m_upperButton4->setObjectName(QString("pushButton4"));
+    m_upperButton4->setText("Button4");
+    m_upperButton4->setGeometry(QRect(380, 30, 80, 25));
 
     // addLayout(QLayout * layout, int row, int column, int rowSpan, int columnSpan, Qt::Alignment alignment = 0)
     QHBoxLayout *m_horizontalLayout = new QHBoxLayout();
-    m_horizontalLayout->setObjectName(QString("verticalLayout"));
     m_horizontalLayout->setContentsMargins(0, 0, 0, 0);
     this->addLayout(m_horizontalLayout, 0, 0, 1, 3);
+
+    m_horizontalLayout->setObjectName(QString("verticalLayout"));
+    m_horizontalLayout->addWidget(m_upperButton1);
+    m_horizontalLayout->addWidget(m_upperButton0);
+    m_horizontalLayout->addWidget(m_upperButton2);
+    m_horizontalLayout->addWidget(m_upperButton3);
+    m_horizontalLayout->addWidget(m_upperButton4);
 }
 
 void MainLayout::setStatusBar(QStatusBar *statusBar)

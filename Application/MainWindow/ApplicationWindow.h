@@ -91,12 +91,5 @@ private:
     EditorModule * m_editorModule;
     QPushButton *m_button;
     QWidget *m_centralWidget;
-
-    // CONTROL BUTTONS
-    QPushButton *m_upperButton0;
-    QPushButton *m_upperButton1;
-    QPushButton *m_upperButton2;
-    QPushButton *m_upperButton3;
-    QPushButton *m_upperButton4;
 };
 #endif // ApplicationWindow_H
