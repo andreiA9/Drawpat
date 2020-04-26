@@ -6,7 +6,6 @@
 #include <QImageWriter>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QPushButton>
 
 // QT
 #include <QList>
@@ -64,13 +63,17 @@ private slots:
 private:
     void drawButton();
 
+    /** \brief the main LAYOUT of the ApplicationWindow
+      */
+    void initializeMainLayout();
+
     /** \brief the CONNECTIONS from MainLayout are made here
       */
     void initializeMenuConnects();
 
     /** \brief the interraction BUTTONS are put here
       */
-    void initializeUpperButtons();
+    void initializeControlButtons();
 
     /** \brief add the STATUS BAR to the MainLayout
       */
@@ -87,5 +90,13 @@ private:
     MainLayout *m_mainLayout;
     EditorModule * m_editorModule;
     QPushButton *m_button;
+    QWidget *m_centralWidget;
+
+    // CONTROL BUTTONS
+    QPushButton *m_upperButton0;
+    QPushButton *m_upperButton1;
+    QPushButton *m_upperButton2;
+    QPushButton *m_upperButton3;
+    QPushButton *m_upperButton4;
 };
 #endif // ApplicationWindow_H

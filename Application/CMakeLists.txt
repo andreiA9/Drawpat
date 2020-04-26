@@ -8,8 +8,6 @@ set(MainWindow_SRC
     MainWindow/ApplicationWindow.h
     MainWindow/MainLayout.cpp
     MainWindow/MainLayout.h
-    MainWindow/CentralWidget.cpp
-    MainWindow/CentralWidget.h
     )
 
 set(EditorModule_SRC

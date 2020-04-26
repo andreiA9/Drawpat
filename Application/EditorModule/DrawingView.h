@@ -16,7 +16,7 @@
   */
 
 
-class DrawingView : public QWidget
+class DrawingView : public EditorView
 {
     Q_OBJECT
 

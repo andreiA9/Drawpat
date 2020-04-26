@@ -8,25 +8,11 @@ ApplicationWindow::ApplicationWindow(QWidget *parent)
     setWindowTitle(tr("Drawpat"));
     QWidget::resize(800, 600);
 
-    Events *events = new Events;
-
-    // this is the Widget that will be shown when drawing
-//    QWidget *drawingArea = new DrawingView;
-    DrawingView *drawingArea = new DrawingView(events, this);
-    drawingArea->resize(700, 500);
-    m_editorModule = new EditorModule(drawingArea, events);
-
-    m_mainLayout = new MainLayout(drawingArea, this);
-    m_mainLayout->setGeometry(QRect(10, 100, 781, 521));
-    // setting the WIDGET.LAYOUT<a WIDGET will contain 1MAIN-LAYOUT
-    // the same as QMainWindow that contains a single 1MAIN-LAYOUT
-    setLayout(m_mainLayout);
+    initializeMainLayout();
 
     initializeMenuConnects();
 
     drawButton();
-
-    initializeUpperButtons();
 
     initializeStatusBar();
 }
@@ -44,13 +30,37 @@ void ApplicationWindow::drawButton()
     // set size and location of the button
     m_button->setGeometry(QRect(QPoint(100, 100), QSize(100, 30)));
 
+//    m_upperButton0 = new QPushButton(this);
+//    m_upperButton1 = new QPushButton(this);
+//    m_upperButton2 = new QPushButton(this);
+//    m_upperButton3 = new QPushButton(this);
+//    m_upperButton4 = new QPushButton(this);
+
     // Connect button signal to appropriate slot
     connect(m_button, &QPushButton::released, this, &ApplicationWindow::handleButton);
 }
 
-void ApplicationWindow::handleButton()
+void ApplicationWindow::initializeMainLayout()
 {
-    m_editorModule->rotationTriggered(true);
+    Events *events = new Events;
+
+    // this is the Widget that will be shown when drawing
+    //    QWidget *drawingArea = new DrawingView;
+    DrawingView *drawingArea = new DrawingView(events, this);
+    drawingArea->resize(700, 400);
+    m_editorModule = new EditorModule(drawingArea, events);
+    m_centralWidget = drawingArea;
+
+    m_mainLayout = new MainLayout(m_centralWidget, this);
+    m_mainLayout->setContentsMargins(10, 30, 10, 10);
+    /* ECHIVALENT cu
+    m_mainLayout->setGeometry(QRect(10, 100, 781, 521)); */
+
+    initializeControlButtons();
+
+    // setting the WIDGET.LAYOUT<a WIDGET will contain 1MAIN-LAYOUT
+    // the same as QMainWindow that contains a single 1MAIN-LAYOUT
+    setLayout(m_mainLayout);
 }
 
 void ApplicationWindow::initializeMenuConnects()
@@ -73,43 +83,37 @@ void ApplicationWindow::initializeMenuConnects()
     connect(m_mainLayout->getAboutAction(), &QAction::triggered, this, &ApplicationWindow::showAbout);
 }
 
-void ApplicationWindow::initializeUpperButtons()
+void ApplicationWindow::initializeControlButtons()
 {
-    QPushButton *upperButton0 = new QPushButton(this);
+    m_upperButton0 = new QPushButton(this);
+    m_upperButton1 = new QPushButton(this);
+    m_upperButton2 = new QPushButton(this);
+    m_upperButton3 = new QPushButton(this);
+    m_upperButton4 = new QPushButton(this);
 
-    QPushButton *upperButton1 = new QPushButton(this);
+    m_mainLayout->setControlButtons(m_upperButton0,
+                                    m_upperButton1,
+                                    m_upperButton2,
+                                    m_upperButton3,
+                                    m_upperButton4);
 
-    QPushButton *upperButton2 = new QPushButton(this);
+    m_upperButton4->setObjectName(QString("pushButton4"));
+    m_upperButton4->setText("Button4");
+    m_upperButton4->setGeometry(QRect(380, 30, 80, 25));
 
-    QPushButton *upperButton3 = new QPushButton(this);
+//    connect(m_mainLayout->getUpperButton4(), &QPushButton::pressed, this, &ApplicationWindow::handleButton, Qt::DirectConnection);
+    connect(m_upperButton4, &QPushButton::released, this, &ApplicationWindow::handleButton, Qt::DirectConnection);
+}
 
-    QPushButton *upperButton4 = new QPushButton(this);
-    upperButton0->setObjectName(QString("pushButton0"));
-    upperButton0->setText("Button0");
-    upperButton0->setGeometry(QRect(20, 10, 80, 25));
-
-    upperButton1->setObjectName(QString("pushButton1"));
-    upperButton1->setText("Button1");
-    upperButton1->setGeometry(QRect(110, 10, 80, 25));
-
-    upperButton2->setObjectName(QString("pushButton2"));
-    upperButton2->setText("Button2");
-    upperButton2->setGeometry(QRect(200, 10, 80, 25));
-
-    upperButton3->setObjectName(QString("pushButton3"));
-    upperButton3->setText("Button3");
-    upperButton3->setGeometry(QRect(290, 10, 80, 25));
-
-    upperButton4->setObjectName(QString("pushButton4"));
-    upperButton4->setText("Button5");
-    upperButton4->setGeometry(QRect(380, 10, 80, 25));
+void ApplicationWindow::handleButton()
+{
+    QCoreApplication::processEvents();
+    m_editorModule->rotationTriggered(true);
 }
 
 void ApplicationWindow::initializeStatusBar()
 {
     QStatusBar *statusbar = new QStatusBar(this);
-    statusbar->setObjectName(QString::fromUtf8("statusBar"));
-    statusbar->showMessage(QString("A inceput aplicatia"), 3000);
     m_mainLayout->setStatusBar(statusbar);
 }
 

@@ -3,9 +3,11 @@
 
 // QT WIDGETS
 #include <QGridLayout>
+#include <QHBoxLayout>
 #include <QMenuBar>
 #include <QStatusBar>
 #include <QImageWriter>
+#include <QPushButton>
 
 
 
@@ -14,7 +16,8 @@ class MainLayout : public QGridLayout
     Q_OBJECT
 
 public:
-    MainLayout(QWidget *drawingArea, QWidget *parent = nullptr);
+    MainLayout(QWidget *centralWidget, QWidget *parent = nullptr);
+    ~MainLayout();
 
     // GETTERS
     QAction* getCreateAction() const { return m_newAction; }
@@ -26,6 +29,18 @@ public:
     QAction* getAboutAction() const { return m_aboutAction; }
     QAction* getExitAction() const { return m_exitAction; }
 
+    QPushButton * getUpperButton0() const { return m_upperButton0; }
+    QPushButton * getUpperButton1() const { return m_upperButton1; }
+    QPushButton * getUpperButton2() const { return m_upperButton2; }
+    QPushButton * getUpperButton3() const { return m_upperButton3; }
+    QPushButton * getUpperButton4() const { return m_upperButton4; }
+
+    // SETTERS
+    void setControlButtons(QPushButton *upperButton0,
+                           QPushButton *upperButton1,
+                           QPushButton *upperButton2,
+                           QPushButton *upperButton3,
+                           QPushButton *upperButton4);
     void setStatusBar(QStatusBar *statusbar);
 
 private:
@@ -59,6 +74,14 @@ private:
     QAction *m_exitAction;
 
     QStatusBar *m_statusbar;
+
+    // CONTROL BUTTONS
+    QHBoxLayout *m_horizontalLayout;
+    QPushButton *m_upperButton0;
+    QPushButton *m_upperButton1;
+    QPushButton *m_upperButton2;
+    QPushButton *m_upperButton3;
+    QPushButton *m_upperButton4;
 };
 
 #endif // MAINLAYOUT_H
