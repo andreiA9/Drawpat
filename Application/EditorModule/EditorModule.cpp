@@ -21,6 +21,7 @@ void EditorModule::setPenWidth(int width)
 void EditorModule::rotationTriggered(bool rotated)
 {
     m_events->setImageRoted(rotated);
+    m_drawingView->processEvents();
 }
 
 void EditorModule::create()

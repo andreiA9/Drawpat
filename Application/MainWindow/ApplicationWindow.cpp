@@ -2,17 +2,32 @@
 
 
 
-ApplicationWindow::ApplicationWindow(QWidget *parent)
+ApplicationWindow::ApplicationWindow()
 {
     // SET WINDOW PARAMETERS
     setWindowTitle(tr("Drawpat"));
     QWidget::resize(800, 600);
 
+    Events *events = new Events;
+
+    // this is the Widget that will be shown when drawing
+    //    QWidget *drawingArea = new DrawingView;
+    DrawingView *drawingArea = new DrawingView(events, this);
+    drawingArea->resize(700, 400);
+    m_editorModule = new EditorModule(drawingArea, events);
+    m_centralWidget = drawingArea;
+
+
     initializeMainLayout();
+
+    createActions();
+    createMenuBar();
+
+    drawButton();
 
     initializeMenuConnects();
 
-    drawButton();
+    initializeButtonsConnects();
 
     initializeStatusBar();
 }
@@ -23,88 +38,38 @@ ApplicationWindow::~ApplicationWindow()
     delete m_editorModule;
 }
 
-void ApplicationWindow::drawButton()
+void ApplicationWindow::initializeButtonsConnects()
 {
-    // Create the button, make "this" the parent
-    m_button = new QPushButton("My Button", this);
-    // set size and location of the button
-    m_button->setGeometry(QRect(QPoint(100, 100), QSize(100, 30)));
-
     // Connect button signal to appropriate slot
     connect(m_button, &QPushButton::released, this, &ApplicationWindow::handleButton);
-}
 
-void ApplicationWindow::initializeMainLayout()
-{
-    Events *events = new Events;
-
-    // this is the Widget that will be shown when drawing
-    //    QWidget *drawingArea = new DrawingView;
-    DrawingView *drawingArea = new DrawingView(events, this);
-    drawingArea->resize(700, 400);
-    m_editorModule = new EditorModule(drawingArea, events);
-    m_centralWidget = drawingArea;
-
-    m_mainLayout = new MainLayout(m_centralWidget, this);
-    m_mainLayout->setContentsMargins(10, 30, 10, 10);
-    /* ECHIVALENT cu
-    m_mainLayout->setGeometry(QRect(10, 100, 781, 521)); */
-
-    initializeControlButtons();
-
-    // setting the WIDGET.LAYOUT<a WIDGET will contain 1MAIN-LAYOUT
-    // the same as QMainWindow that contains a single 1MAIN-LAYOUT
-    setLayout(m_mainLayout);
+//    connect(m_mainLayout->getUpperButton4(), &QPushButton::pressed, this, &ApplicationWindow::handleButton, Qt::DirectConnection);
+    connect(m_upperButton4, &QPushButton::released, this, &ApplicationWindow::handleButton);
 }
 
 void ApplicationWindow::initializeMenuConnects()
 {
-    connect(m_mainLayout->m_newAction, &QAction::triggered, m_editorModule, &EditorModule::create);
-    connect(m_mainLayout->m_openAction, &QAction::triggered, this, &ApplicationWindow::open);
+    connect(m_newAction, &QAction::triggered, m_editorModule, &EditorModule::create);
+    connect(m_openAction, &QAction::triggered, this, &ApplicationWindow::open);
 
-    QList<QAction *> &saveAsActions = m_mainLayout->m_saveAsActions;
     int i = 0;
     for (QByteArray format : QImageWriter::supportedImageFormats())
     {
-        connect(saveAsActions.at(i), &QAction::triggered, this, &ApplicationWindow::save);
+        connect(m_saveAsActions.at(i), &QAction::triggered, this, &ApplicationWindow::save);
         i++;
     }
 
-    connect(m_mainLayout->m_exitAction, &QAction::triggered, this, &QWidget::close);
-    connect(m_mainLayout->m_penColorAction, &QAction::triggered, this, &ApplicationWindow::editPenColor);
-    connect(m_mainLayout->m_penWidthAction, &QAction::triggered, this, &ApplicationWindow::editPenWidth);
-    connect(m_mainLayout->m_clearDrawingAreaAction, &QAction::triggered, m_editorModule, &EditorModule::clear);
-    connect(m_mainLayout->m_aboutAction, &QAction::triggered, this, &ApplicationWindow::showAbout);
-}
-
-void ApplicationWindow::initializeControlButtons()
-{
-    QPushButton *upperButton0 = new QPushButton(this);
-    QPushButton *upperButton1 = new QPushButton(this);
-    QPushButton *upperButton2 = new QPushButton(this);
-    QPushButton *upperButton3 = new QPushButton(this);
-    QPushButton *upperButton4 = new QPushButton(this);
-
-    m_mainLayout->setControlButtons(upperButton0,
-                                    upperButton1,
-                                    upperButton2,
-                                    upperButton3,
-                                    upperButton4);
-
-//    connect(m_mainLayout->getUpperButton4(), &QPushButton::pressed, this, &ApplicationWindow::handleButton, Qt::DirectConnection);
-    connect(m_mainLayout->m_upperButton4, &QPushButton::released, this, &ApplicationWindow::handleButton, Qt::DirectConnection);
+    connect(m_exitAction, &QAction::triggered, this, &QWidget::close);
+    connect(m_penColorAction, &QAction::triggered, this, &ApplicationWindow::editPenColor);
+    connect(m_penWidthAction, &QAction::triggered, this, &ApplicationWindow::editPenWidth);
+    connect(m_clearDrawingAreaAction, &QAction::triggered, m_editorModule, &EditorModule::clear);
+    connect(m_aboutAction, &QAction::triggered, this, &ApplicationWindow::showAbout);
 }
 
 void ApplicationWindow::handleButton()
 {
-    QCoreApplication::processEvents();
+    qDebug() << "process";
     m_editorModule->rotationTriggered(true);
-}
-
-void ApplicationWindow::initializeStatusBar()
-{
-    QStatusBar *statusbar = new QStatusBar(this);
-    m_mainLayout->setStatusBar(statusbar);
 }
 
 void ApplicationWindow::closeEvent(QCloseEvent *event)

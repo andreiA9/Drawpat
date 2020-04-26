@@ -28,6 +28,10 @@ public:
     void setPenColor(const QColor &color);
     void setPenWidth(int width);
 
+    /** \brief EVENTS PROCESSING
+      */
+    void processEvents();
+
     /** \brief Getter needed when the User modifies the Image without changing it
       * \return true - if the image was modified
       */

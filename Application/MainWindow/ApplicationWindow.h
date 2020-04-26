@@ -7,6 +7,8 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
+#include <QDebug>
+
 // QT
 #include <QList>
 
@@ -23,12 +25,12 @@ class DrawingView;
 //namespace Ui { class ApplicationWindow; }
 //QT_END_NAMESPACE
 
-class ApplicationWindow : public QWidget
+class ApplicationWindow : public WindowContainer
 {
     Q_OBJECT
 
 public:
-    ApplicationWindow(QWidget *parent = nullptr);
+    ApplicationWindow();
     ~ApplicationWindow();
 
 protected:
@@ -61,11 +63,6 @@ private slots:
     void handleButton();
 
 private:
-    void drawButton();
-
-    /** \brief the main LAYOUT of the ApplicationWindow
-      */
-    void initializeMainLayout();
 
     /** \brief the CONNECTIONS from MainLayout are made here
       */
@@ -73,11 +70,7 @@ private:
 
     /** \brief the interraction BUTTONS are put here
       */
-    void initializeControlButtons();
-
-    /** \brief add the STATUS BAR to the MainLayout
-      */
-    void initializeStatusBar();
+    void initializeButtonsConnects();
 
     /** \brief the user cannot[0 = open a file/1 = close the application]
       *        if the current file was not saved
@@ -87,9 +80,7 @@ private:
 
 private:
 //    Ui::ApplicationWindow *ui;
-    MainLayout *m_mainLayout;
+    WindowContainer *m_mainLayout;
     EditorModule * m_editorModule;
-    QPushButton *m_button;
-    QWidget *m_centralWidget;
 };
 #endif // ApplicationWindow_H

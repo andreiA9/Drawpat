@@ -11,14 +11,41 @@
 
 
 
-class MainLayout : public QGridLayout
+class WindowContainer : public QWidget
 {
     Q_OBJECT
 
 public:
-    MainLayout(QWidget *centralWidget, QWidget *parent = nullptr);
-    ~MainLayout();
+    WindowContainer(QWidget *parent = nullptr);
+    ~WindowContainer();
 
+    // INITIALIZATION
+    void initializeControlButtons();
+
+    /** \brief add the STATUS BAR to the MainLayout
+      */
+    void initializeStatusBar();
+
+    /** \brief the main LAYOUT of the ApplicationWindow
+      */
+    void initializeMainLayout();
+
+protected:
+    void drawButton();
+
+    /** \brief will create the ACTIONS for each MENU.BUTTON
+      */
+    void createActions();
+
+    /** \brief will create the MENUBAR<that contains many BUTTONS
+      */
+    void createMenuBar();
+
+    /** \brief will create the BUTTONS of the MENUBAR
+      */
+    void addMenuBarButtons(QMenuBar *menuBar);
+
+protected:
     // MENU ITEMS
     QMenu *m_saveAsMenu;
     QMenu *m_fileMenu;
@@ -45,29 +72,10 @@ public:
     QPushButton *m_upperButton3;
     QPushButton *m_upperButton4;
 
-    // SETTERS
-    void setControlButtons(QPushButton *upperButton0,
-                           QPushButton *upperButton1,
-                           QPushButton *upperButton2,
-                           QPushButton *upperButton3,
-                           QPushButton *upperButton4);
-    void setStatusBar(QStatusBar *statusbar);
+    QPushButton *m_button;
 
-private:
-    /** \brief will create the ACTIONS for each MENU.BUTTON
-      */
-    void createActions();
-
-    /** \brief will create the MENUBAR<that contains many BUTTONS
-      */
-    void createMenuBar();
-
-    /** \brief will create the BUTTONS of the MENUBAR
-      */
-    void addMenuBarButtons(QMenuBar *menuBar);
-
-private:
-
+    QGridLayout *m_gridLayout;
+    QWidget *m_centralWidget;
 };
 
 #endif // MAINLAYOUT_H

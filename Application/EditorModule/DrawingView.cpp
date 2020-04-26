@@ -107,6 +107,11 @@ void DrawingView::paintEvent(QPaintEvent *event)
     }
 }
 
+void DrawingView::processEvents()
+{
+    QWidget::update();
+}
+
 void DrawingView::rotateTo90Degrees(QImage &dstImg)
 {
     QMatrix matrix;
@@ -124,8 +129,8 @@ void DrawingView::rotateTo90Degrees(QImage &dstImg)
     dstImg = m_image.transformed(matrix);
 
     // IDENTICA cu
-//        painter.setMatrix(matrix);
-//        painter.drawImage(dirtyRect, m_image, dirtyRect);
+//    painter.setMatrix(matrix);
+//    painter.drawImage(dirtyRect, m_image, dirtyRect);
 }
 
 void DrawingView::resizeEvent(QResizeEvent *event)
