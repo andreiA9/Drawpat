@@ -1,10 +1,21 @@
 cmake_minimum_required(VERSION 2.8)
 
+
+# Test for supported Qt version
+set(QT_MINIMUM_VERSION 5.9.0)
+find_program(QMAKE_EXECUTABLE NAMES qmake HINTS ${QTDIR} ENV QTDIR PATH_SUFFIXES bin)
+execute_process(COMMAND ${QMAKE_EXECUTABLE} -query QT_VERSION OUTPUT_VARIABLE QT_VERSION)
+if(QT_VERSION VERSION_LESS QT_MINIMUM_VERSION)
+        MESSAGE(FATAL_ERROR "Minimum supported Qt version: ${QT_MINIMUM_VERSION}. Installed version: ${QT_VERSION}")
+endif()
+
 # numele PROIECTULUI
 project(Drawpat)
 
 # INSTRUCT CMake to call COMPILER=MOC automatically
 set(CMAKE_AUTOMOC ON)
+# this will alllow INDEXING of RESOURCES=icons
+set(CMAKE_AUTORCC ON)
 # NU SE stie de ce ai adaugat o
 # As moc files are generated in the binary dir, tell CMake
 # to always look for includes there:
@@ -56,8 +67,8 @@ set_property(DIRECTORY APPEND PROPERTY
 
 
 install(
-    DIRECTORY ${CMAKE_PROJECT_DIR}/Resources/
-    DESTINATION ${PROJECT_BINARY_DIR}/Application/Resources
+    DIRECTORY ${PROJECT_SOURCE_DIR}/Resources/
+    DESTINATION ${PROJECT_BINARY_DIR}/Resources
     )
 
 

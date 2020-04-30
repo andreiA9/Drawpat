@@ -1,31 +1,13 @@
 #include "WindowContainer.h"
+#include <QFile>
+#include <QUrl>
 
 WindowContainer::WindowContainer(QWidget *parent)
 {
-
 }
 
 WindowContainer::~WindowContainer()
 {
-    delete m_newAction;
-    delete m_openAction;
-
-    // delete from QList algorithm < go through all ELEMENTS
-    // and only after incrementing to the FIRST POINTER > you
-    // will be allowed to DELETE the PREVIOUS POINTER
-    auto it = m_saveAsActions.begin();
-    while (it != m_saveAsActions.end())
-    {
-        auto toBeDeleted = it;
-        it++;
-        delete *toBeDeleted;
-    }
-    delete m_penColorAction;
-    delete m_penWidthAction;
-    delete m_clearDrawingAreaAction;
-    delete m_aboutAction;
-    delete m_exitAction;
-
     delete m_saveAsMenu;
     delete m_fileMenu;
     delete m_optionMenu;
@@ -113,17 +95,24 @@ void WindowContainer::initializeStatusBar()
     m_statusbar = new QStatusBar(this);
     m_statusbar->setObjectName(QString::fromUtf8("statusBar"));
     m_statusbar->showMessage(QString("A inceput aplicatia"), 3000);
-    m_statusbar->setGeometry(QRect(10, 781, 781, 20));
+    m_statusbar->setGeometry(QRect(10, 761, 781, 20));
     m_gridLayout->addWidget(m_statusbar, 2, 0, 1, 4);
 }
 
-void WindowContainer::createActions()
+void WindowContainer::createFileMenu()
 {
     m_newAction = new QAction(tr("&New"), this);
     m_newAction->setShortcuts(QKeySequence::New);
+//    m_newAction->setIcon(QIcon(QUrl::fromLocalFile("Icons/new-file-96.png").toString()));
+    m_newAction->setIcon(QIcon(QString("qrc:/icons/Icons/new-file-96.png")));
+//    m_newAction->setIcon(QIcon(QString("qrc:/icons/new-file-96.png")));
+//                                       "qrc:/prodlogqmlresources/icons/icons/18x18-ladeeinheit.svg"
+//    m_newAction->setIcon(QIcon(QString("C:\\Programe\\Drawpat-cmake\\Application\\Icons\\new-file-96.png")));
+    m_newAction->setIconVisibleInMenu(true);
 
     m_openAction = new QAction(tr("&Open"), this);
     m_openAction->setShortcut(QKeySequence::Open);
+    m_openAction->setIcon(QIcon(QString("qrc:/icons/Icons/open-file-96.png")));
 
     for (QByteArray format : QImageWriter::supportedImageFormats())
     {
@@ -133,9 +122,60 @@ void WindowContainer::createActions()
         m_saveAsActions.append(action);
     }
 
+
+    m_saveAsMenu = new QMenu(tr("&Save as"), parentWidget());
+    for (QAction *action : m_saveAsActions)
+    {
+        m_saveAsMenu->addAction(action);
+    }
+    QIcon icon2;
+    m_saveAsMenu->setIcon(QIcon(QString(":/icons/icons/save-as-file-96.png")));
+
     m_exitAction = new QAction(tr("&Exit"), this);
     m_exitAction->setShortcuts(QKeySequence::Quit);
+    m_exitAction->setIcon(QIcon(QString(":/icons/icons/exit-96.png")));
 
+    m_fileMenu = new QMenu(tr("&File"), this);
+    m_fileMenu->addAction(m_newAction);
+    m_fileMenu->addAction(m_openAction);
+    m_fileMenu->addMenu(m_saveAsMenu);
+    // will add "-----------------" to the MENU
+    m_fileMenu->addSeparator();
+    m_fileMenu->addAction(m_exitAction);
+}
+
+void WindowContainer::createEditMenu()
+{
+    m_editCutAction = new QAction(tr("&Cut"), this);
+    m_editCutAction->setShortcuts(QKeySequence::Cut);
+    m_exitAction->setIcon(QIcon(QString(":/icons/icons/cut-text-96.png")));
+
+    m_editCopyAction = new QAction(tr("&Copy"), this);
+    m_editCopyAction->setShortcuts(QKeySequence::Copy);
+    m_exitAction->setIcon(QIcon(QString(":/icons/icons/copy-text-96.png")));
+
+    m_editPasteAction = new QAction(tr("&Paste"), this);
+    m_editPasteAction->setShortcuts(QKeySequence::Paste);
+    m_exitAction->setIcon(QIcon(QString(":/icons/icons/paste-text-96.png")));
+
+    m_editUndoAction = new QAction(tr("&Undo"), this);
+    m_editUndoAction->setShortcuts(QKeySequence::Undo);
+    m_exitAction->setIcon(QIcon(QString(":/icons/icons/undo-96.png")));
+
+    m_editRedoAction = new QAction(tr("&Redo"), this);
+    m_editRedoAction->setShortcuts(QKeySequence::Redo);
+    m_exitAction->setIcon(QIcon(QString(":/icons/icons/redo-96.png")));
+
+    m_editMenu = new QMenu(tr("&Edit"), this);
+    m_editMenu->addAction(m_editCutAction);
+    m_editMenu->addAction(m_editCopyAction);
+    m_editMenu->addAction(m_editPasteAction);
+    m_editMenu->addAction(m_editUndoAction);
+    m_editMenu->addAction(m_editRedoAction);
+}
+
+void WindowContainer::createOtherMenus()
+{
     m_penColorAction = new QAction(tr("&Pen color"), this);
 
     m_penWidthAction = new QAction(tr("&Pen width"), this);
@@ -144,42 +184,28 @@ void WindowContainer::createActions()
 //    m_clearScreenAction->setShortcuts(tr("Ctrl + L"));
 
     m_aboutAction = new QAction(tr("&About"), this);
-}
 
-void WindowContainer::createMenuBar()
-{
-    QMenuBar* menuBar = new QMenuBar();
-    addMenuBarButtons(menuBar);
-
-    m_gridLayout->setMenuBar(menuBar);
-}
-
-void WindowContainer::addMenuBarButtons(QMenuBar* menuBar)
-{
-    m_saveAsMenu = new QMenu(tr("&Save as"), parentWidget());
-    for (QAction *action : m_saveAsActions)
-    {
-        m_saveAsMenu->addAction(action);
-    }
-
-    m_fileMenu = new QMenu(tr("&File"), parentWidget());
-    m_fileMenu->addAction(m_newAction);
-    m_fileMenu->addAction(m_openAction);
-    m_fileMenu->addMenu(m_saveAsMenu);
-    // will add "-----------------" to the MENU
-    m_fileMenu->addSeparator();
-    m_fileMenu->addAction(m_exitAction);
-
-    m_optionMenu = new QMenu(tr("&Option"), parentWidget());
+    m_optionMenu = new QMenu(tr("&Option"), this);
     m_optionMenu->addAction(m_penColorAction);
     m_optionMenu->addAction(m_penWidthAction);
     m_optionMenu->addSeparator();
     m_optionMenu->addAction(m_clearDrawingAreaAction);
 
-    m_helpMenu = new QMenu(tr("&Help"), parentWidget());
+    m_helpMenu = new QMenu(tr("&Help"), this);
     m_helpMenu->addAction(m_aboutAction);
+}
 
-    menuBar->addMenu(m_fileMenu);
-    menuBar->addMenu(m_optionMenu);
-    menuBar->addMenu(m_helpMenu);
+void WindowContainer::createMenuBar()
+{
+    m_menuBar = new QMenuBar(this);
+    createFileMenu();
+    createEditMenu();
+    createOtherMenus();
+
+    m_menuBar->addMenu(m_fileMenu);
+    m_menuBar->addMenu(m_editMenu);
+    m_menuBar->addMenu(m_optionMenu);
+    m_menuBar->addMenu(m_helpMenu);
+
+    m_gridLayout->setMenuBar(m_menuBar);
 }

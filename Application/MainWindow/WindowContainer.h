@@ -31,34 +31,48 @@ public:
     void initializeMainLayout();
 
 protected:
-    /** \brief will create the ACTIONS for each MENU.BUTTON
+    /** \brief will create the ACTIONS for each Menu->File
       */
-    void createActions();
+    void createFileMenu();
+
+    /** \brief will create the ACTIONS for each Menu->Edit
+      */
+    void createEditMenu();
+
+    /** \brief will create the BUTTONS of the MENUBAR
+      */
+    void createOtherMenus();
 
     /** \brief will create the MENUBAR<that contains many BUTTONS
       */
     void createMenuBar();
 
-    /** \brief will create the BUTTONS of the MENUBAR
-      */
-    void addMenuBarButtons(QMenuBar *menuBar);
-
 protected:
+    QMenuBar* m_menuBar;
+
     // MENU ITEMS
-    QMenu *m_saveAsMenu;
     QMenu *m_fileMenu;
+    QMenu *m_saveAsMenu;
     QMenu *m_optionMenu;
     QMenu *m_helpMenu;
 
-    // ACTIONS inside the MENUS
+    // Menu->File
     QAction *m_newAction;
     QAction *m_openAction;
     QList<QAction*> m_saveAsActions;  // this is the saveAsMenu = it is the LIST of FILE.formats to be saved
+    QAction *m_exitAction;
+
     QAction *m_penColorAction;
     QAction *m_penWidthAction;
     QAction *m_clearDrawingAreaAction;
     QAction *m_aboutAction;
-    QAction *m_exitAction;
+
+    QMenu *m_editMenu;
+    QAction *m_editCutAction;
+    QAction *m_editCopyAction;
+    QAction *m_editPasteAction;
+    QAction *m_editUndoAction;
+    QAction *m_editRedoAction;
 
     QStatusBar *m_statusbar;
 

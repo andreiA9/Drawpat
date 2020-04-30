@@ -20,7 +20,7 @@ ApplicationWindow::ApplicationWindow()
 
     initializeMainLayout();
 
-    createActions();
+    createFileMenu();
     createMenuBar();
 
     initializeMenuConnects();

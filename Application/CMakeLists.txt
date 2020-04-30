@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 2.8)
 
 # headers included in both[Qt Widgests/Qt QML]
 include_directories(${Qt5Widgets_INCLUDE_DIRS} ${QtQml_INCLUDE_DIRS})
+# this will alllow INDEXING of RESOURCES=icons
+# NU ESTE NEVOIE de asta daca ai
+# qt5_add_resources()
+set (CMAKE_AUTORCC ON)
+
 
 set(MainWindow_SRC
     MainWindow/ApplicationWindow.cpp
@@ -45,7 +50,9 @@ add_executable(Drawpat WIN32
 # !!!!!!!!!!!!!! NOT USED
 # Telling CMake location of our app .qrc file
 # ${CMAKE_CURRENT_SOURCE_DIR} = full path to the source directory that is currently being processed by cmake
-#qt5_add_resources(APP_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/qml.qrc)
+qt5_add_resources(MainWindow_SRC ${CMAKE_CURRENT_SOURCE_DIR}/resources.qrc)
+#qt5_add_resources(APP_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources.qrc)
+
 
 add_library(MainWindowLib_static
     ${MainWindow_SRC}
