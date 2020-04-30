@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>add-file-96.png</file>
+        <file>add-new-file-copy-96.png</file>
+        <file>copy-text-96.png</file>
+        <file>cut-text-96.png</file>
+        <file alias="new-file">new-file-96.png</file>
+        <file>open-file-96.png</file>
+        <file>paste-text-96.png</file>
+        <file>redo-96.png</file>
+        <file>save-as-file-96.png</file>
+        <file>undo-96.png</file>
+        <file>exit-96.png</file>
+    </qresource>
+</RCC>

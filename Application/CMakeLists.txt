@@ -28,6 +28,21 @@ set(EditorModule_SRC
     EditorModule/Events.h
     )
 
+set(MainWindow_RES
+    Icons/resources.qrc
+    Icons/add-file-96.png
+    Icons/add-new-file-copy-96.png
+    Icons/copy-text-96.png
+    Icons/cut-text-96.png
+    Icons/new-file-96.png
+    Icons/open-file-96.png
+    Icons/paste-text-96.png
+    Icons/redo-96.png
+    Icons/save-as-file-96.png
+    Icons/undo-96.png
+    Icons/exit-96.png
+    )
+
 set(Utils_SRC
     )
 
@@ -43,6 +58,9 @@ set(Misc_SRC
 
 
 add_executable(Drawpat WIN32
+    # add the RESOURCES
+    # RESURSELE doar aici merg
+    ${MainWindow_RES}
     main.cpp
     )
 
@@ -50,7 +68,7 @@ add_executable(Drawpat WIN32
 # !!!!!!!!!!!!!! NOT USED
 # Telling CMake location of our app .qrc file
 # ${CMAKE_CURRENT_SOURCE_DIR} = full path to the source directory that is currently being processed by cmake
-qt5_add_resources(MainWindow_SRC ${CMAKE_CURRENT_SOURCE_DIR}/resources.qrc)
+#qt5_add_resources(MainWindow_SRC ${MainWindow_RES})
 #qt5_add_resources(APP_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources.qrc)
 
 
@@ -60,8 +78,6 @@ add_library(MainWindowLib_static
     ${EditorModule_SRC}
     ${Utils_SRC}
 #    ${Misc_SRC}
-    # add the RESOURCES
-    ${APP_RESOURCES}
     )
 
 # this will be shown only if the CMakeLists.txt is present inside FOLDER = MainWindow
