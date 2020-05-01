@@ -8,6 +8,7 @@ include_directories(${Qt5Widgets_INCLUDE_DIRS} ${QtQml_INCLUDE_DIRS})
 set (CMAKE_AUTORCC ON)
 
 
+
 set(MainWindow_SRC
     MainWindow/ApplicationWindow.cpp
     MainWindow/ApplicationWindow.h
@@ -40,11 +41,6 @@ set(Misc_SRC
     Constants.h
     )
 
-# ADD new FILE
-# file(TOUCH Qml/TabButton.qml)
-# RENAME
-# file(RENAME Qml/TabButton.qml Qml/TabButtonBackground.qml)
-
 
 add_library(MainWindowLib_static
     ${MainWindow_SRC}
@@ -76,8 +72,8 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 
 
 install(
-    DIRECTORY ${PROJECT_SOURCE_DIR}/Resources/
-    DESTINATION ${PROJECT_BINARY_DIR}/Resources
+    DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Resources/Images
+    DESTINATION ${PROJECT_BINARY_DIR}/Application/
     )
 
 
