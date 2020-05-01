@@ -103,16 +103,11 @@ void WindowContainer::createFileMenu()
 {
     m_newAction = new QAction(tr("&New"), this);
     m_newAction->setShortcuts(QKeySequence::New);
-//    m_newAction->setIcon(QIcon(QUrl::fromLocalFile("Icons/new-file-96.png").toString()));
-    m_newAction->setIcon(QIcon(QString(":/new-file")));
-//    m_newAction->setIcon(QIcon(QString("qrc:/icons/new-file-96.png")));
-//                                       "qrc:/prodlogqmlresources/icons/icons/18x18-ladeeinheit.svg"
-//    m_newAction->setIcon(QIcon(QString("C:\\Programe\\Drawpat-cmake\\Application\\Icons\\new-file-96.png")));
-    m_newAction->setIconVisibleInMenu(true);
+    m_newAction->setIcon(QIcon(QString(":/icons/new-file")));
 
     m_openAction = new QAction(tr("&Open"), this);
     m_openAction->setShortcut(QKeySequence::Open);
-    m_openAction->setIcon(QIcon(QString("qrc:/icons/Icons/open-file-96.png")));
+    m_openAction->setIcon(QIcon(QString(":/icons/open-file")));
 
     for (QByteArray format : QImageWriter::supportedImageFormats())
     {
@@ -128,12 +123,11 @@ void WindowContainer::createFileMenu()
     {
         m_saveAsMenu->addAction(action);
     }
-    QIcon icon2;
-    m_saveAsMenu->setIcon(QIcon(QString(":/icons/Icons/save-as-file-96.png")));
+    m_saveAsMenu->setIcon(QIcon(QString(":/icons/save-as-file")));
 
     m_exitAction = new QAction(tr("&Exit"), this);
     m_exitAction->setShortcuts(QKeySequence::Quit);
-    m_exitAction->setIcon(QIcon(QString(":/icons/Icons/exit-96.png")));
+    m_exitAction->setIcon(QIcon(QString(":/icons/exit")));
 
     m_fileMenu = new QMenu(tr("&File"), this);
     m_fileMenu->addAction(m_newAction);
@@ -148,23 +142,23 @@ void WindowContainer::createEditMenu()
 {
     m_editCutAction = new QAction(tr("&Cut"), this);
     m_editCutAction->setShortcuts(QKeySequence::Cut);
-    m_exitAction->setIcon(QIcon(QString(":/cut-text-96.png")));
+    m_editCutAction->setIcon(QIcon(QString(":/icons/cut-text")));
 
     m_editCopyAction = new QAction(tr("&Copy"), this);
     m_editCopyAction->setShortcuts(QKeySequence::Copy);
-    m_exitAction->setIcon(QIcon(QString(":/icons/Icons/copy-text-96.png")));
+    m_editCopyAction->setIcon(QIcon(QString(":/icons/copy-text")));
 
     m_editPasteAction = new QAction(tr("&Paste"), this);
     m_editPasteAction->setShortcuts(QKeySequence::Paste);
-    m_exitAction->setIcon(QIcon(QString(":/icons/Icons/paste-text-96.png")));
+    m_editPasteAction->setIcon(QIcon(QString(":/icons/paste-text")));
 
     m_editUndoAction = new QAction(tr("&Undo"), this);
     m_editUndoAction->setShortcuts(QKeySequence::Undo);
-    m_exitAction->setIcon(QIcon(QString(":/icons/Icons/undo-96.png")));
+    m_editUndoAction->setIcon(QIcon(QString(":/icons/undo")));
 
     m_editRedoAction = new QAction(tr("&Redo"), this);
     m_editRedoAction->setShortcuts(QKeySequence::Redo);
-    m_exitAction->setIcon(QIcon(QString(":/icons/Icons/redo-96.png")));
+    m_editRedoAction->setIcon(QIcon(QString(":/icons/redo")));
 
     m_editMenu = new QMenu(tr("&Edit"), this);
     m_editMenu->addAction(m_editCutAction);

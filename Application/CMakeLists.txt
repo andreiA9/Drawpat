@@ -29,18 +29,7 @@ set(EditorModule_SRC
     )
 
 set(MainWindow_RES
-    Icons/resources.qrc
-    Icons/add-file-96.png
-    Icons/add-new-file-copy-96.png
-    Icons/copy-text-96.png
-    Icons/cut-text-96.png
-    Icons/new-file-96.png
-    Icons/open-file-96.png
-    Icons/paste-text-96.png
-    Icons/redo-96.png
-    Icons/save-as-file-96.png
-    Icons/undo-96.png
-    Icons/exit-96.png
+    Resources/resources.qrc
     )
 
 set(Utils_SRC
@@ -57,21 +46,6 @@ set(Misc_SRC
 # file(RENAME Qml/TabButton.qml Qml/TabButtonBackground.qml)
 
 
-add_executable(Drawpat WIN32
-    # add the RESOURCES
-    # RESURSELE doar aici merg
-    ${MainWindow_RES}
-    main.cpp
-    )
-
-
-# !!!!!!!!!!!!!! NOT USED
-# Telling CMake location of our app .qrc file
-# ${CMAKE_CURRENT_SOURCE_DIR} = full path to the source directory that is currently being processed by cmake
-#qt5_add_resources(MainWindow_SRC ${MainWindow_RES})
-#qt5_add_resources(APP_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources.qrc)
-
-
 add_library(MainWindowLib_static
     ${MainWindow_SRC}
     # add the CPP FILES
@@ -79,10 +53,6 @@ add_library(MainWindowLib_static
     ${Utils_SRC}
 #    ${Misc_SRC}
     )
-
-# this will be shown only if the CMakeLists.txt is present inside FOLDER = MainWindow
-#add_subdirectory(UiComponent)
-
 
 
 target_link_libraries(MainWindowLib_static
@@ -92,14 +62,29 @@ target_link_libraries(MainWindowLib_static
     )
 
 
-# AICI vei gasi MODULELE
-# < pentru a le adauga mai sus
-# http://doc.qt.io/qt-5/qtmodules.html
+add_executable(${PROJECT_NAME} WIN32
+    # add the RESOURCES
+    # RESURSELE doar aici merg
+    ${MainWindow_RES}
+    main.cpp
+    )
 
-# link the EXECUTABLE to the main LIBRARY
-# < this was you will also have the [ Qt5::QuickWidgets / Qt5::Quick / Qt5::Qml]
-# for #include<QQmlApplicationEngine>
 
-target_link_libraries(Drawpat PRIVATE
+target_link_libraries(${PROJECT_NAME} PRIVATE
     MainWindowLib_static
     )
+
+
+install(
+    DIRECTORY ${PROJECT_SOURCE_DIR}/Resources/
+    DESTINATION ${PROJECT_BINARY_DIR}/Resources
+    )
+
+
+# expose values to c++ files
+set(PROJECT_VERSION 1.0)
+set(PROJECT_BUNDLE_NAME AppName)
+target_compile_definitions(${PROJECT_NAME} PRIVATE
+        CMAKE_DEF_PROJECT_VERSION="${PROJECT_VERSION}"
+        CMAKE_DEF_APP_NAME="${PROJECT_BUNDLE_NAME}"
+)

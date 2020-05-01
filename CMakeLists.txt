@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 2.8)
 
+# numele PROIECTULUI
+set(PROJECT_NAME Drawpat)
+project(${PROJECT_NAME})
+
 
 # Test for supported Qt version
 set(QT_MINIMUM_VERSION 5.9.0)
@@ -9,8 +13,6 @@ if(QT_VERSION VERSION_LESS QT_MINIMUM_VERSION)
         MESSAGE(FATAL_ERROR "Minimum supported Qt version: ${QT_MINIMUM_VERSION}. Installed version: ${QT_VERSION}")
 endif()
 
-# numele PROIECTULUI
-project(Drawpat)
 
 # INSTRUCT CMake to call COMPILER=MOC automatically
 set(CMAKE_AUTOMOC ON)
@@ -44,12 +46,12 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # IPO < set(Qt5_COMPONENTS Core Sql Test QuickTest Widgets Network Qml Quick Gui Concurrent QuickWidgets)
 set(Qt5_COMPONENTS Core Widgets Sql REQUIRED)
 find_package(Qt5 COMPONENTS ${Qt5_COMPONENTS})
-# asta pentru QML
-# find_package(Qt5 REQUIRED ${Qt5_COMPONENTS})
+
 
 # Directory with another CMakeLists.txt file
 # the same directory will need to be present on disk
 add_subdirectory(Application)
+add_subdirectory(Network)
 
 
 
@@ -65,11 +67,6 @@ set_property(DIRECTORY APPEND PROPERTY
 #set(IPO_INSTALL_DESTINATION ${RICHCLIENT_INSTALL_DESTINATION} CACHE STRING "The default install destination")
 # SET(INSTALL_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/bin/$<CONFIG>)
 
-
-install(
-    DIRECTORY ${PROJECT_SOURCE_DIR}/Resources/
-    DESTINATION ${PROJECT_BINARY_DIR}/Resources
-    )
 
 
 
