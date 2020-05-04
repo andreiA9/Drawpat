@@ -1,15 +1,16 @@
 #ifndef TEXTEDITOR_H
 #define TEXTEDITOR_H
 
-#include "EditorView.h"
+#include <QWidget>
+#include <QTextEdit>
 
 
 
-class TextEditor : public EditorView
+class TextEditor : public QWidget
 {
     Q_OBJECT
-
-
+public:
+    TextEditor(QWidget *parent = nullptr);
 };
 
 #endif

@@ -51,43 +51,43 @@ protected:
     QMenuBar* m_menuBar;
 
     // MENU ITEMS
-    QMenu *m_fileMenu;
-    QMenu *m_saveAsMenu;
-    QMenu *m_optionMenu;
-    QMenu *m_helpMenu;
+    QMenu *m_fileMenu = nullptr;
+    QMenu *m_saveAsMenu = nullptr;
+    QMenu *m_optionMenu = nullptr;
+    QMenu *m_helpMenu = nullptr;
 
     // Menu->File
-    QAction *m_newAction;
-    QAction *m_openAction;
+    QAction *m_newAction = nullptr;
+    QAction *m_openAction = nullptr;
     QList<QAction*> m_saveAsActions;  // this is the saveAsMenu = it is the LIST of FILE.formats to be saved
-    QAction *m_exitAction;
+    QAction *m_exitAction = nullptr;
 
-    QAction *m_penColorAction;
-    QAction *m_penWidthAction;
-    QAction *m_clearDrawingAreaAction;
-    QAction *m_aboutAction;
+    QAction *m_penColorAction = nullptr;
+    QAction *m_penWidthAction = nullptr;
+    QAction *m_clearDrawingAreaAction = nullptr;
+    QAction *m_aboutAction = nullptr;
 
-    QMenu *m_editMenu;
-    QAction *m_editCutAction;
-    QAction *m_editCopyAction;
-    QAction *m_editPasteAction;
-    QAction *m_editUndoAction;
-    QAction *m_editRedoAction;
+    QMenu *m_editMenu = nullptr;
+    QAction *m_editCutAction = nullptr;
+    QAction *m_editCopyAction = nullptr;
+    QAction *m_editPasteAction = nullptr;
+    QAction *m_editUndoAction = nullptr;
+    QAction *m_editRedoAction = nullptr;
 
-    QStatusBar *m_statusbar;
+    QStatusBar *m_statusbar = nullptr;
 
     // CONTROL BUTTONS
-    QHBoxLayout *m_horizontalLayout;
-    QPushButton *m_upperButton0;
-    QPushButton *m_upperButton1;
-    QPushButton *m_upperButton2;
-    QPushButton *m_upperButton3;
-    QPushButton *m_upperButton4;
+    QHBoxLayout *m_horizontalLayout = nullptr;
+    QPushButton *m_upperButton0 = nullptr;
+    QPushButton *m_upperButton1 = nullptr;
+    QPushButton *m_upperButton2 = nullptr;
+    QPushButton *m_upperButton3 = nullptr;
+    QPushButton *m_upperButton4 = nullptr;
 
-    QPushButton *m_button;
+    QPushButton *m_button = nullptr;
 
-    QGridLayout *m_gridLayout;
-    QWidget *m_centralWidget;
+    QGridLayout *m_mainLayout = nullptr;
+    QWidget *m_centralWidget = nullptr;
 };
 
 #endif // MAINLAYOUT_H

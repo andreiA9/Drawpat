@@ -15,7 +15,8 @@
 // USER-DEFINED
 #include "WindowContainer.h"
 #include "../EditorModule/EditorModule.h"
-
+#include "../EditorModule/EditorView.h"
+#include "../EditorModule/TextEditor.h"
 
 
 class DrawingView;
@@ -79,8 +80,8 @@ private:
     bool saveFile(const QByteArray &fileFormat);
 
 private:
-//    Ui::ApplicationWindow *ui;
-    WindowContainer *m_mainLayout;
-    EditorModule * m_editorModule;
+    WindowContainer *m_mainLayout = nullptr;
+    EditorModule * m_editorModule = nullptr;
+    EditorView *m_editorView = nullptr;
 };
 #endif // ApplicationWindow_H

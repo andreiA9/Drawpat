@@ -14,6 +14,7 @@
 // USER-DEFINED
 #include "Events.h"
 #include "DrawingView.h"
+#include "TextEditor.h"
 
 
 
@@ -23,7 +24,8 @@ class EditorModule : public QObject
     Q_OBJECT
 
 public:
-    EditorModule(DrawingView *drawingView, Events *events);
+    EditorModule(DrawingView *drawingView, TextEditor *textEditor, Events *events);
+    ~EditorModule();
 
     /** \brief if both{DrawingView/TextEditor} have been modified
       * \return if one from{DrawingView/TextEditor} has been modified
@@ -66,8 +68,9 @@ public:
 
 private:
     QString m_fileName;
-    DrawingView *m_drawingView;
-    Events *m_events;
+    DrawingView *m_drawingView = nullptr;
+    TextEditor *m_textEditor = nullptr;
+    Events *m_events = nullptr;
 };
 
 #endif // EDITORMODULE_H

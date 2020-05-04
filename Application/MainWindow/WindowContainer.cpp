@@ -28,17 +28,17 @@ WindowContainer::~WindowContainer()
 
 void WindowContainer::initializeMainLayout()
 {
-    m_gridLayout = new QGridLayout(this);
+    m_mainLayout = new QGridLayout(this);
     // NU SE STIE CE FAC
 //    m_gridLayout->setColumnStretch(0, 1);
 //    m_gridLayout->setColumnStretch(3, 1);
-    m_gridLayout->setContentsMargins(10, 30, 10, 10);
+    m_mainLayout->setContentsMargins(10, 30, 10, 10);
     /* ECHIVALENT cu
     m_mainLayout->setGeometry(QRect(10, 100, 781, 521)); */
 
     // this means that the DrawingArea will expand on all-columns
     // of the LAYOUT
-    m_gridLayout->addWidget(m_centralWidget, 1, 0, 1, 4);
+    m_mainLayout->addWidget(m_centralWidget, 1, 0, 1, 4);
 
 
     initializeControlButtons();
@@ -46,7 +46,7 @@ void WindowContainer::initializeMainLayout()
 
     // setting the WIDGET.LAYOUT<a WIDGET will contain 1MAIN-LAYOUT
     // the same as QMainWindow that contains a single 1MAIN-LAYOUT
-    setLayout(m_gridLayout);
+    setLayout(m_mainLayout);
 }
 
 void WindowContainer::initializeControlButtons()
@@ -80,7 +80,7 @@ void WindowContainer::initializeControlButtons()
     // addLayout(QLayout * layout, int row, int column, int rowSpan, int columnSpan, Qt::Alignment alignment = 0)
     QHBoxLayout *m_horizontalLayout = new QHBoxLayout();
     m_horizontalLayout->setContentsMargins(0, 0, 0, 0);
-    m_gridLayout->addLayout(m_horizontalLayout, 0, 0, 1, 3);
+    m_mainLayout->addLayout(m_horizontalLayout, 0, 0, 1, 3);
 
     m_horizontalLayout->setObjectName(QString("verticalLayout"));
     m_horizontalLayout->addWidget(m_upperButton1);
@@ -96,7 +96,7 @@ void WindowContainer::initializeStatusBar()
     m_statusbar->setObjectName(QString::fromUtf8("statusBar"));
     m_statusbar->showMessage(QString("A inceput aplicatia"), 3000);
     m_statusbar->setGeometry(QRect(10, 761, 781, 20));
-    m_gridLayout->addWidget(m_statusbar, 2, 0, 1, 4);
+    m_mainLayout->addWidget(m_statusbar, 2, 0, 1, 4);
 }
 
 void WindowContainer::createFileMenu()
@@ -201,5 +201,5 @@ void WindowContainer::createMenuBar()
     m_menuBar->addMenu(m_optionMenu);
     m_menuBar->addMenu(m_helpMenu);
 
-    m_gridLayout->setMenuBar(m_menuBar);
+    m_mainLayout->setMenuBar(m_menuBar);
 }

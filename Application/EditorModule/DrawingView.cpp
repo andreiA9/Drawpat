@@ -2,7 +2,6 @@
 #include "DrawingView.h"
 
 DrawingView::DrawingView(Events *events, QWidget *parent)
-    : EditorView(parent)
 {
     setAttribute(Qt::WA_StaticContents);
     m_isModified = false;

@@ -1,10 +1,19 @@
 #include "EditorView.h"
 
 
-EditorView::EditorView(QWidget *parent)
+EditorView::EditorView(DrawingView *drawingView, TextEditor *textEditor, QWidget *parent)
     : QWidget(parent)
 {
+    Q_ASSERT(drawingView);
+//    Q_ASSERT(textEditor);
+    if(!textEditor)
+    {
+        return;
+    }
 
+    m_container.addWidget(drawingView);
+    m_container.addWidget(textEditor);
+    m_container.setCurrentWidget(drawingView);
 }
 
 void EditorView::initializeTabs()

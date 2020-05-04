@@ -12,10 +12,18 @@ ApplicationWindow::ApplicationWindow()
 
     // this is the Widget that will be shown when drawing
     //    QWidget *drawingArea = new DrawingView;
-    DrawingView *drawingArea = new DrawingView(events, this);
-    drawingArea->resize(700, 400);
-    m_editorModule = new EditorModule(drawingArea, events);
-    m_centralWidget = drawingArea;
+    DrawingView *drawingView = new DrawingView(events, this);
+    drawingView->resize(700, 400);
+
+    TextEditor *textEditor = nullptr;
+//    TextEditor *textEditor = new TextEditor(this);
+//    textEditor->resize(700, 400);
+
+    m_editorModule = new EditorModule(drawingView, textEditor, events);
+
+    m_editorView = new EditorView(drawingView, textEditor);
+    m_centralWidget = drawingView;
+//    m_centralWidget = m_editorView;
 
 
     initializeMainLayout();
@@ -33,6 +41,7 @@ ApplicationWindow::ApplicationWindow()
 ApplicationWindow::~ApplicationWindow()
 {
     delete m_editorModule;
+    delete m_editorView;
 }
 
 void ApplicationWindow::initializeButtonsConnects()

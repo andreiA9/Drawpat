@@ -2,11 +2,11 @@
 #define DRAWINGAREA_H
 
 
+#include <QWidget>
 #include <QMouseEvent>
 #include <QPainter>
 
 // USER-DEFINED
-#include "EditorView.h"
 #include "Events.h"
 
 
@@ -16,7 +16,7 @@
   */
 
 
-class DrawingView : public EditorView
+class DrawingView : public QWidget
 {
     Q_OBJECT
 
@@ -71,7 +71,7 @@ private:
 private:
     bool m_isDrawingAllowed;
     bool m_isModified;
-    Events *m_events;
+    Events *m_events = nullptr;
 
     QImage m_image;
     QPoint m_lastPoint;
