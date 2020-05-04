@@ -8,6 +8,8 @@
 // USER-DEFINED
 #include "TextEditor.h"
 #include "DrawingView.h"
+#include "EditorModule.h"
+
 
 
 class EditorView : public QWidget
@@ -15,9 +17,11 @@ class EditorView : public QWidget
     Q_OBJECT
 
 public:
-    EditorView(DrawingView *drawingView, TextEditor *textEditor, QWidget *parent = nullptr);
+    EditorView(QStackedWidget* container, QWidget *parent = nullptr);
 
     void initializeTabs();
+
+    QStackedWidget * getContainer() const { return m_container; }
 
 private:
     QPushButton *tab0 = nullptr;
@@ -26,7 +30,8 @@ private:
     QPushButton *tab3 = nullptr;
     QPushButton *tab4 = nullptr;
 
-    QStackedWidget m_container;
+    QStackedWidget* m_container = nullptr;
+    EditorModule * m_editorModule = nullptr;
 };
 
 #endif // EDITORVIEW_H

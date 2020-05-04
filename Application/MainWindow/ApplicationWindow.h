@@ -14,9 +14,7 @@
 
 // USER-DEFINED
 #include "WindowContainer.h"
-#include "../EditorModule/EditorModule.h"
-#include "../EditorModule/EditorView.h"
-#include "../EditorModule/TextEditor.h"
+
 
 
 class DrawingView;
@@ -41,6 +39,8 @@ protected:
       * \param - event
       */
     void closeEvent(QCloseEvent *event) override;
+
+    EditorView * getEditorView() override { return m_editorView; }
 
 private slots:
     // FUNCTIONS = IMAGE

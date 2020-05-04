@@ -4,6 +4,10 @@
 
 EditorModule::EditorModule(DrawingView *drawingView, TextEditor* textEditor, Events *events)
 {
+    Q_ASSERT(drawingView);
+    Q_ASSERT(textEditor);
+    Q_ASSERT(events);
+
     m_drawingView = drawingView;
     m_textEditor = textEditor;
     m_events = events;

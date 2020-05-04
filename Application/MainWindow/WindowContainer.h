@@ -9,6 +9,9 @@
 #include <QImageWriter>
 #include <QPushButton>
 
+// USER-DEFINED
+#include "../EditorModule/EditorView.h"
+
 
 
 class WindowContainer : public QWidget
@@ -46,6 +49,8 @@ protected:
     /** \brief will create the MENUBAR<that contains many BUTTONS
       */
     void createMenuBar();
+
+    virtual EditorView* getEditorView() = 0;
 
 protected:
     QMenuBar* m_menuBar;
@@ -87,7 +92,6 @@ protected:
     QPushButton *m_button = nullptr;
 
     QGridLayout *m_mainLayout = nullptr;
-    QWidget *m_centralWidget = nullptr;
 };
 
 #endif // MAINLAYOUT_H

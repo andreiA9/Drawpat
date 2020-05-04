@@ -1,19 +1,25 @@
 #include "EditorView.h"
 
 
-EditorView::EditorView(DrawingView *drawingView, TextEditor *textEditor, QWidget *parent)
+EditorView::EditorView(QStackedWidget* container,  QWidget *parent)
     : QWidget(parent)
 {
-    Q_ASSERT(drawingView);
-//    Q_ASSERT(textEditor);
-    if(!textEditor)
-    {
-        return;
-    }
+    Events *events = new Events;
 
-    m_container.addWidget(drawingView);
-    m_container.addWidget(textEditor);
-    m_container.setCurrentWidget(drawingView);
+    // this is the Widget that will be shown when drawing
+    //    QWidget *drawingArea = new DrawingView;
+    DrawingView *drawingView = new DrawingView(events, this);
+    drawingView->resize(700, 400);
+
+    TextEditor *textEditor = new TextEditor(this);
+    textEditor->resize(700, 400);
+
+    m_editorModule = new EditorModule(drawingView, textEditor, events);
+
+    m_container = container;
+    m_container->addWidget(drawingView);
+    m_container->addWidget(textEditor);
+    m_container->setCurrentWidget(drawingView);
 }
 
 void EditorView::initializeTabs()

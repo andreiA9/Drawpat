@@ -8,21 +8,10 @@ ApplicationWindow::ApplicationWindow()
     setWindowTitle(tr("Drawpat"));
     QWidget::resize(800, 600);
 
-    Events *events = new Events;
+    QStackedWidget* container = new QStackedWidget(this);
 
-    // this is the Widget that will be shown when drawing
-    //    QWidget *drawingArea = new DrawingView;
-    DrawingView *drawingView = new DrawingView(events, this);
-    drawingView->resize(700, 400);
-
-    TextEditor *textEditor = nullptr;
-//    TextEditor *textEditor = new TextEditor(this);
-//    textEditor->resize(700, 400);
-
-    m_editorModule = new EditorModule(drawingView, textEditor, events);
-
-    m_editorView = new EditorView(drawingView, textEditor);
-    m_centralWidget = drawingView;
+    m_editorView = new EditorView(container);
+//    m_centralWidget = drawingView;
 //    m_centralWidget = m_editorView;
 
 
