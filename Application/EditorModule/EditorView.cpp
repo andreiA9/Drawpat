@@ -7,7 +7,6 @@ EditorView::EditorView(QStackedWidget* container,  QWidget *parent)
     Events *events = new Events;
 
     // this is the Widget that will be shown when drawing
-    //    QWidget *drawingArea = new DrawingView;
     DrawingView *drawingView = new DrawingView(events, this);
     drawingView->resize(700, 400);
 

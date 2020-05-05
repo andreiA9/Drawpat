@@ -11,9 +11,6 @@ ApplicationWindow::ApplicationWindow()
     QStackedWidget* container = new QStackedWidget(this);
 
     m_editorView = new EditorView(container);
-//    m_centralWidget = drawingView;
-//    m_centralWidget = m_editorView;
-
 
     initializeMainLayout();
 
