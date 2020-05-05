@@ -17,6 +17,8 @@ endif()
 # INSTRUCT CMake to call COMPILER=MOC automatically
 set(CMAKE_AUTOMOC ON)
 # this will alllow INDEXING of RESOURCES=icons
+# NU ESTE NEVOIE de asta daca ai
+# qt5_add_resources()
 set(CMAKE_AUTORCC ON)
 # NU SE stie de ce ai adaugat o
 # As moc files are generated in the binary dir, tell CMake
@@ -35,21 +37,10 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 #else()
 #        message(SEND_ERROR "You are using an unsupported Windows compiler! (Not MSVC or GCC)")
 
-# Check correct Qt version
-#if(NOT EXISTS ${Qt5Core_DIR})
-#message(FATAL_ERROR "No Qt found, please point the QT_DIR variable to your Qt Installation directory")
-#endif()
 
 
-# DEFINE VARIABLE that specify your QT-framework\components used
-# this is the Qt5 framework > o sa iti apara "CMake Modules" mai jos
-# IPO < set(Qt5_COMPONENTS Core Sql Test QuickTest Widgets Network Qml Quick Gui Concurrent QuickWidgets)
-set(Qt5_COMPONENTS Core Widgets Sql REQUIRED)
-find_package(Qt5 COMPONENTS ${Qt5_COMPONENTS})
 
 
-# Directory with another CMakeLists.txt file
-# the same directory will need to be present on disk
 add_subdirectory(Application)
 add_subdirectory(Network)
 

@@ -1,7 +1,0 @@
-#add_library(MainWindowLib_static
-#    ${MainWindow_SRC}
-#    )
-
-#target_link_libraries(MainWindowLib_static
-#    Qt5::Widgets        # -> Widgets
-#    )
