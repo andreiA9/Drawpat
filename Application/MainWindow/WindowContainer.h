@@ -10,8 +10,8 @@
 #include <QPushButton>
 
 // USER-DEFINED
-#include "../EditorModule/EditorView.h"
-//#include "EditorView.h"
+//#include "../EditorModule/EditorView.h"
+#include "EditorView.h"
 
 
 

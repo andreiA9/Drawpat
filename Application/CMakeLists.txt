@@ -24,9 +24,8 @@ add_executable(${PROJECT_NAME} WIN32
     )
 
 
-target_link_libraries(${PROJECT_NAME} PRIVATE
+target_link_libraries(${PROJECT_NAME} PUBLIC
     MainWindow_static
-    EditorModule_static
     )
 
 

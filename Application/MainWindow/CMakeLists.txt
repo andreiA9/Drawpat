@@ -13,13 +13,13 @@ add_library(MainWindow_static
     )
 
 target_link_libraries(MainWindow_static
+    EditorModule_static
+    )
+
+target_link_libraries(MainWindow_static
     Qt5::Widgets        # -> Widgets
     Qt5::Core           # -> Core
     Qt5::Sql            # -> Sql
-    )
-
-target_include_directories(MainWindow_static
-    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
     )
 
 include_directories(EditorModule_static)
