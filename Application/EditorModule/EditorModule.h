@@ -12,6 +12,7 @@
 #include <QTranslator>
 
 // USER-DEFINED
+#include "EditorView.h"
 #include "Events.h"
 #include "DrawingView.h"
 #include "TextEditor.h"
@@ -24,7 +25,7 @@ class EditorModule : public QObject
     Q_OBJECT
 
 public:
-    EditorModule(DrawingView *drawingView, TextEditor *textEditor, Events *events);
+    EditorModule(QStackedWidget* container);
     ~EditorModule();
 
     /** \brief if both{DrawingView/TextEditor} have been modified
@@ -36,6 +37,7 @@ public:
     void setPenColor(const QColor &color);
     void setPenWidth(int width);
 
+    QStackedWidget * getContainer() const { return m_container; }
     QString getFileName() const { return m_fileName; }
     QColor getPenColor() const { return m_drawingView->getPenColor(); }
     int getPenWidth() const { return m_drawingView->getPenWidth(); }
@@ -67,10 +69,12 @@ public:
     void editPenWidth();
 
 private:
-    QString m_fileName;
+    EditorView *m_editorView = nullptr;
+    QStackedWidget* m_container = nullptr;
     DrawingView *m_drawingView = nullptr;
     TextEditor *m_textEditor = nullptr;
     Events *m_events = nullptr;
+    QString m_fileName;
 };
 
 #endif // EDITORMODULE_H

@@ -8,9 +8,11 @@ ApplicationWindow::ApplicationWindow()
     setWindowTitle(tr("Drawpat"));
     QWidget::resize(800, 600);
 
+    // this is the Widget that will be shown when drawing
     QStackedWidget* container = new QStackedWidget(this);
 
-    m_editorView = new EditorView(container);
+    m_editorModule = new EditorModule(container);
+
 
     initializeMainLayout();
 
@@ -26,8 +28,6 @@ ApplicationWindow::ApplicationWindow()
 
 ApplicationWindow::~ApplicationWindow()
 {
-    delete m_editorModule;
-    delete m_editorView;
 }
 
 void ApplicationWindow::initializeButtonsConnects()
@@ -122,7 +122,6 @@ bool ApplicationWindow::trySave()
 
     if (m_editorModule->isDirty())
     {
-
         QMessageBox::StandardButton option;
         option = QMessageBox::warning(this,
                                       tr("Scribble"),
@@ -143,7 +142,6 @@ bool ApplicationWindow::trySave()
         {
             retVal = false;
         }
-
     }
 
     return retVal;

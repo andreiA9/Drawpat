@@ -38,7 +38,7 @@ void WindowContainer::initializeMainLayout()
 
     // this means that the DrawingArea will expand on all-columns
     // of the LAYOUT
-    m_mainLayout->addWidget(getEditorView()->getContainer(), 1, 0, 1, 4);
+    m_mainLayout->addWidget(getMainContainer(), 1, 0, 1, 4);
 
 
     initializeControlButtons();

@@ -11,7 +11,7 @@
 
 // USER-DEFINED
 //#include "../EditorModule/EditorView.h"
-#include "EditorView.h"
+#include "EditorModule.h"
 
 
 
@@ -51,7 +51,7 @@ protected:
       */
     void createMenuBar();
 
-    virtual EditorView* getEditorView() = 0;
+    virtual QStackedWidget* getMainContainer() = 0;
 
 protected:
     QMenuBar* m_menuBar;

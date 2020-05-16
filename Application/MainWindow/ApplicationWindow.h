@@ -14,6 +14,7 @@
 
 // USER-DEFINED
 #include "WindowContainer.h"
+#include "DrawingView.h"
 
 
 
@@ -40,7 +41,8 @@ protected:
       */
     void closeEvent(QCloseEvent *event) override;
 
-    EditorView * getEditorView() override { return m_editorView; }
+//    EditorView * getEditorView() override { return m_editorView; }
+    QStackedWidget * getMainContainer() override { return m_editorModule->getContainer(); }
 
 private slots:
     // FUNCTIONS = IMAGE
@@ -80,8 +82,6 @@ private:
     bool saveFile(const QByteArray &fileFormat);
 
 private:
-    WindowContainer *m_mainLayout = nullptr;
-    EditorModule * m_editorModule = nullptr;
-    EditorView *m_editorView = nullptr;
+    EditorModule *m_editorModule = nullptr;
 };
 #endif // ApplicationWindow_H

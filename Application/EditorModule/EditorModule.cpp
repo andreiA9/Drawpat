@@ -2,27 +2,30 @@
 
 
 
-EditorModule::EditorModule(DrawingView *drawingView, TextEditor* textEditor, Events *events)
+EditorModule::EditorModule(QStackedWidget* container)
 {
-    Q_ASSERT(drawingView);
-    Q_ASSERT(textEditor);
-    Q_ASSERT(events);
+    Q_ASSERT(container);
 
-    m_drawingView = drawingView;
-    m_textEditor = textEditor;
-    m_events = events;
+    Events *m_events = new Events;
+    m_drawingView = new DrawingView(m_events);
+    m_textEditor = new TextEditor;
+    m_container = container;
+
+    m_editorView = new EditorView(m_container, m_drawingView, m_textEditor, m_events);
 }
 
 EditorModule::~EditorModule()
 {
-    // !!!!PE ASTEA nu se face delete nicaieri
+    delete m_container;
+    delete m_editorView;
+
+    /* Note: when removing widgets from QStackedWidget > the widget is not deleted,
+    but simply removed from the widget's stacked layout, causing it to be hidden. */
+    m_container->removeWidget(m_drawingView);
+    m_container->removeWidget(m_textEditor);
     delete m_drawingView;
     delete m_textEditor;
-    //Note: The ownership of widget remains the same. The widget is not deleted, but simply removed from the widget's stacked layout, causing it to be hidden.
-    //So you have to do it yourself:
-    //Qt Code
-    //stackedWidget->removeWidget(pageWidget);
-    //pageWidget->deleteLater(); // or: delete pageWidget;
+    delete m_events;
 }
 
 void EditorModule::setPenColor(const QColor &color)
