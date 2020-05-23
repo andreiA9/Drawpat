@@ -59,11 +59,11 @@ bool EditorModule::saveFile(const QByteArray &format)
 {
     if (!m_fileName.isEmpty())
     {
-        editorInfo() << "Saving file " << m_fileName << " to disk.";
+        editorDebug() << "Saving file " << m_fileName << " to disk.";
         return m_drawingView->saveImage(m_fileName, format.constData());
     }
 
-    editorInfo() << "File name is empy.";
+    editorDebug() << "File name is empy.";
     return false;
 }
 

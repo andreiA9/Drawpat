@@ -12,23 +12,23 @@ void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QS
     const char *file = context.file ? context.file : "";
     const char *function = context.function ? context.function : "";
     const char *category = context.category ? context.category : "";
-//    Logger::LogCategory categoryEnum = static_cast<Logger::LogCategory>(atoi(category));
-//    category = s_globalLoggerInstance.toCategoryCharString(categoryEnum);
+    QFileInfo info(file);
+    const char *fileName = info.fileName().toStdString().c_str();
     switch (type) {
     case QtDebugMsg:
-        fprintf(stderr, "%s Debug: %s (%s:%u, %s)\n", category, localMsg.constData(), file, context.line, function);
+        fprintf(stderr, "%s Debug: %s | %s:%u, %s\n", category, localMsg.constData(), fileName, context.line, function);
         break;
     case QtInfoMsg:
-        fprintf(stderr, "%s Info: %s (%s:%u, %s)\n", category, localMsg.constData(), file, context.line, function);
+        fprintf(stderr, "%s Info: %s | %s:%u, %s\n", category, localMsg.constData(), fileName, context.line, function);
         break;
     case QtWarningMsg:
-        fprintf(stderr, "%s Warning: %s (%s:%u, %s)\n", category, localMsg.constData(), file, context.line, function);
+        fprintf(stderr, "%s Warning: %s | %s:%u, %s\n", category, localMsg.constData(), fileName, context.line, function);
         break;
     case QtCriticalMsg:
-        fprintf(stderr, "%s Critical: %s (%s:%u, %s)\n", category, localMsg.constData(), file, context.line, function);
+        fprintf(stderr, "%s Critical: %s | %s:%u, %s\n", category, localMsg.constData(), fileName, context.line, function);
         break;
     case QtFatalMsg:
-        fprintf(stderr, "%s Fatal: %s (%s:%u, %s)\n", category, localMsg.constData(), file, context.line, function);
+        fprintf(stderr, "%s Fatal: %s | %s:%u, %s\n", category, localMsg.constData(), fileName, context.line, function);
         break;
     }
 }
@@ -74,7 +74,7 @@ bool Logger::isLogCategoryValid(const LogCategory &category) const
 
 bool Logger::isLogLevelValid(const LogLevel &level)
 {
-    return level >= 0 && level < LOG_LEVEL_COUNT;
+    return level < LOG_LEVEL_COUNT;
 }
 
 Logger::LogLevel Logger::getLogLevel(const LogCategory &category) const
@@ -101,8 +101,8 @@ bool Logger::setLogLevel(const LogCategory &category, const LogLevel &logLevel)
                          << "changed to log level:" << s_logLevelStrings[logLevel];
         }
         m_logLevels[category] = logLevel;
-        loggerVerbose() << "Logger category" << s_logCategoryStrings[category]
-                        << "set to log level:" << s_logLevelStrings[logLevel];
+        loggerDebug() << "Logger category" << s_logCategoryStrings[category]
+                      << "set to log level:" << s_logLevelStrings[logLevel];
         return true;
     } else {
         return false;
@@ -112,51 +112,27 @@ bool Logger::setLogLevel(const LogCategory &category, const LogLevel &logLevel)
 // use values in same order as in LogCategory enum
 QVector<QByteArray> generateLogCategoryAsciiStrings()
 {
-    return QVector<QByteArray>() << "sample"
-                                 << "logger"
-                                 << "bluetooth"
-                                 << "proxy"
-                                 << "avrcp"
-                                 << "perf"
-                                 << "system"
+    return QVector<QByteArray>() << "Sample"
+                                 << "Logger"
+                                 << "Editor"
                                  << "activity"
                                  << "sync"
                                  << "storage"
                                  << "wifi"
                                  << "map"
                                  << "skobbler"
-                                 << "realreach"
-                                 << "watchdog"
-                                 << "nameserver"
-                                 << "update"
-                                 << "etelib"
-                                 << "screen"
-                                 << "registration"
-                                 << "nav"
-                                 << "plugin"
-                                 << "cmis"
-                                 << "diskspace"
-                                 << "simulator"
-                                 << "sensor"
-                                 << "walkassist"
-                                 << "chart"
-                                 << "eshift"
-                                 << "consumptionTable"
-                                 << "ipc_after_restart"
-                                 << "wdog_after_restart"
-                                 << "keyboard"
-                                 << "dayjournal";
+                                 << "realreach";
 }
 
 // use values in same order as in LogLevel enum
 QVector<QByteArray> generateLogLevelAsciiStrings()
 {
     return QVector<QByteArray>() << "off"
+                                 << "fatal"
                                  << "critical"
                                  << "warning"
                                  << "info"
-                                 << "debug"
-                                 << "verbose";
+                                 << "debug";
 }
 
 // internal functions used for string array constants generation

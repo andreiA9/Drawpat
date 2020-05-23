@@ -31,10 +31,6 @@ public:
         LOG_CATEGORY_SAMPLE = 0,
         LOG_CATEGORY_LOGGER,
         LOG_CATEGORY_EDITOR,
-        LOG_CATEGORY_PROXY,
-        LOG_CATEGORY_AVRCP,
-        LOG_CATEGORY_PERF,
-        LOG_CATEGORY_SYSTEM,
         LOG_CATEGORY_ACTIVITY,
         LOG_CATEGORY_SYNC,
         LOG_CATEGORY_STORAGE,
@@ -42,26 +38,6 @@ public:
         LOG_CATEGORY_MAP,
         LOG_CATEGORY_SKOBBLER,
         LOG_CATEGORY_REAL_REACH,
-        LOG_CATEGORY_WATCHDOG,
-        LOG_CATEGORY_NAMESERVER,
-        LOG_CATEGORY_UPDATE,
-        LOG_CATEGORY_ETELIB,
-        LOG_CATEGORY_SCREEN,
-        LOG_CATEGORY_REGISTRATION,
-        LOG_CATEGORY_NAV,
-        LOG_CATEGORY_PLUGIN,
-        LOG_CATEGORY_CMIS,
-        LOG_CATEGORY_DISK_SPACE_MANAGER,
-        LOG_CATEGORY_SIMULATOR,
-        LOG_CATEGORY_SENSOR,
-        LOG_CATEGORY_WALK_ASSIST,
-        LOG_CATEGORY_CHART,
-        LOG_CATEGORY_ESHIFT,
-        LOG_CATEGORY_CONSUMPTION,
-        LOG_CATEGORY_IPC_AFTER_RESTART,
-        LOG_CATEGORY_WDOG_AFTER_RESTART,
-        LOG_CATEGORY_KEYBOARD,
-        LOG_CATEGORY_DAY_JOURNAL,
 
         // add other categories here
         // when adding other categories do not forget to also add debug statement macros
@@ -73,11 +49,11 @@ public:
     // enum values must be in sync with list of strings (see cpp)
     enum LogLevel {
         LOG_LEVEL_OFF = 0,
+        LOG_LEVEL_FATAL,
         LOG_LEVEL_CRITICAL,
         LOG_LEVEL_WARNING,
         LOG_LEVEL_INFO,
         LOG_LEVEL_DEBUG,
-        LOG_LEVEL_VERBOSE,
 
         LOG_LEVEL_COUNT
     };
@@ -87,8 +63,6 @@ public:
     ~Logger();
 
     void setLevelsToDefault();
-
-    void inline setCategory(LogCategory category) { m_category = category; }
 
     static Logger &getInstance();
 
@@ -129,17 +103,18 @@ private:
     if (STATEMENT_LEVEL > Logger::getInstance().getLogLevel(CATEGORY)) { \
     } else                                                                      \
     QMessageLogger(__FILE__, __LINE__, __func__, Logger::toCategoryCharString(CATEGORY))
+    // Q_DECL_CONSTEXPR QMessageLogger(const char *file, int line, const char *function, const char *category)
 
-#define editorVerbose loggerMacro(Logger::LOG_LEVEL_VERBOSE, Logger::LOG_CATEGORY_EDITOR).debug
 #define editorDebug loggerMacro(Logger::LOG_LEVEL_DEBUG, Logger::LOG_CATEGORY_EDITOR).debug
-#define editorInfo loggerMacro(Logger::LOG_LEVEL_INFO, Logger::LOG_CATEGORY_EDITOR).debug
+#define editorInfo loggerMacro(Logger::LOG_LEVEL_INFO, Logger::LOG_CATEGORY_EDITOR).info
 #define editorWarning loggerMacro(Logger::LOG_LEVEL_WARNING, Logger::LOG_CATEGORY_EDITOR).warning
 #define editorCritical loggerMacro(Logger::LOG_LEVEL_CRITICAL, Logger::LOG_CATEGORY_EDITOR).critical
+#define editorFatal loggerMacro(Logger::LOG_LEVEL_VERBOSE, Logger::LOG_CATEGORY_EDITOR).fatal
 
-#define loggerVerbose loggerMacro(Logger::LOG_LEVEL_VERBOSE, Logger::LOG_CATEGORY_LOGGER).debug
 #define loggerDebug loggerMacro(Logger::LOG_LEVEL_DEBUG, Logger::LOG_CATEGORY_LOGGER).debug
-#define loggerInfo loggerMacro(Logger::LOG_LEVEL_INFO, Logger::LOG_CATEGORY_LOGGER).debug
+#define loggerInfo loggerMacro(Logger::LOG_LEVEL_INFO, Logger::LOG_CATEGORY_LOGGER).info
 #define loggerWarning loggerMacro(Logger::LOG_LEVEL_WARNING, Logger::LOG_CATEGORY_LOGGER).warning
 #define loggerCritical loggerMacro(Logger::LOG_LEVEL_CRITICAL, Logger::LOG_CATEGORY_LOGGER).critical
+#define loggerFatal loggerMacro(Logger::LOG_LEVEL_VERBOSE, Logger::LOG_CATEGORY_LOGGER).fatal
 
 #endif
