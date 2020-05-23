@@ -10,6 +10,7 @@
 // QT
 #include <QString>
 #include <QTranslator>
+#include "Logger.h"
 
 // USER-DEFINED
 #include "EditorView.h"

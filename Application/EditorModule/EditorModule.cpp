@@ -4,7 +4,7 @@
 
 EditorModule::EditorModule(QStackedWidget* container)
 {
-    Q_ASSERT(container);
+    Q_ASSERT(container);    // SAME as -> if (!container) { return; }
 
     Events *m_events = new Events;
     m_drawingView = new DrawingView(m_events);
@@ -57,14 +57,14 @@ void EditorModule::openFile()
 
 bool EditorModule::saveFile(const QByteArray &format)
 {
-    if (m_fileName.isEmpty())
+    if (!m_fileName.isEmpty())
     {
-        return false;
-    }
-    else
-    {
+        editorInfo() << "Saving file " << m_fileName << " to disk.";
         return m_drawingView->saveImage(m_fileName, format.constData());
     }
+
+    editorInfo() << "File name is empy.";
+    return false;
 }
 
 void EditorModule::clear()

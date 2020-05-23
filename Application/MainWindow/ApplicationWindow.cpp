@@ -118,13 +118,13 @@ void ApplicationWindow::showAbout()
 
 bool ApplicationWindow::trySave()
 {
-    bool retVal = true;
+    bool retVal = false;
 
     if (m_editorModule->isDirty())
     {
         QMessageBox::StandardButton option;
         option = QMessageBox::warning(this,
-                                      tr("Scribble"),
+                                      tr("Drawpat"),
                                       tr("Your file was not saved.\n"
                                          "Do you want to save it ?"),
                                       QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);

@@ -12,6 +12,8 @@ set(EditorModule_SRC
     TextEditor.h
     Events.cpp
     Events.h
+    Logger.cpp
+    Logger.h
     )
 
 set(Utils_SRC
@@ -21,7 +23,6 @@ set(Misc_SRC
     Constants.cpp
     Constants.h
     )
-
 
 add_library(EditorModule_static
     ${EditorModule_SRC}
