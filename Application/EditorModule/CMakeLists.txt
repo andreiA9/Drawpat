@@ -39,3 +39,5 @@ target_link_libraries(EditorModule_static
 target_include_directories(EditorModule_static
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
     )
+
+add_subdirectory(Tests)

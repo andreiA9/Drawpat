@@ -3,6 +3,8 @@
 
 DrawingView::DrawingView(Events *events, QWidget *parent)
 {
+    Q_ASSERT(events);
+
     setAttribute(Qt::WA_StaticContents);
     m_isModified = false;
     m_isDrawingAllowed = false;
