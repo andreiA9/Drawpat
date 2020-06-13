@@ -1,5 +1,7 @@
 #include "ApplicationWindow.h"
 
+static const char *IMAGES_PATH = "/Images";
+
 
 
 ApplicationWindow::ApplicationWindow()
@@ -16,7 +18,6 @@ ApplicationWindow::ApplicationWindow()
 
     initializeMainLayout();
 
-    createFileMenu();
     createMenuBar();
 
     initializeMenuConnects();
@@ -39,11 +40,12 @@ void ApplicationWindow::initializeMenuConnects()
 {
     connect(m_newAction, &QAction::triggered, m_editorModule, &EditorModule::create);
     connect(m_openAction, &QAction::triggered, this, &ApplicationWindow::open);
+    connect(m_saveAction, &QAction::triggered, this, &ApplicationWindow::save);
 
     int i = 0;
     for (QByteArray format : QImageWriter::supportedImageFormats())
     {
-        connect(m_saveAsActions.at(i), &QAction::triggered, this, &ApplicationWindow::save);
+        connect(m_saveAsActions.at(i), &QAction::triggered, this, &ApplicationWindow::saveAs);
         i++;
     }
 
@@ -79,13 +81,14 @@ void ApplicationWindow::open()
     // DE REZOLVAT
     if (trySave())
     {
+        QString path = QDir::currentPath() + IMAGES_PATH;
         // open a Dialog Box
         QString fileName = QFileDialog::getOpenFileName(
             this,
             tr("Open File"),
-            QDir::currentPath());
+            path);
 
-        if (!fileName.isEmpty())
+        if (not fileName.isEmpty())
         {
             m_editorModule->setFileName(fileName);
             m_editorModule->openFile();
@@ -95,12 +98,18 @@ void ApplicationWindow::open()
 
 void ApplicationWindow::save()
 {
+
+}
+
+void ApplicationWindow::saveAs()
+{
     QAction *action = qobject_cast<QAction*>(QObject::sender());
     QByteArray fileFormat = action->data().toByteArray();
 
-    QString initialPath = QDir::currentPath();
+    QString path = QDir::currentPath() + IMAGES_PATH;
     QUrl fileUrl = QFileDialog::getSaveFileUrl(this,
-                                            initialPath,
+                                            QString(),
+                                            path,
                                             tr("%1 Files (*.%2);; All FIles(*)")
                                             .arg(QString::fromLatin1(fileFormat.toUpper()))
                                             .arg(QString::fromLatin1(fileFormat)));
@@ -118,7 +127,7 @@ void ApplicationWindow::showAbout()
 
 bool ApplicationWindow::trySave()
 {
-    bool retVal = false;
+    bool retVal = true;
 
     if (m_editorModule->isDirty())
     {

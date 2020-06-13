@@ -63,7 +63,7 @@ bool EditorModule::saveFile(const QByteArray &format)
         return m_drawingView->saveImage(m_fileName, format.constData());
     }
 
-    editorDebug() << "File name is empy.";
+    editorDebug() << "Could not save file, because file name is empy.";
     return false;
 }
 

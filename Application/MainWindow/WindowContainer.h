@@ -65,6 +65,7 @@ protected:
     // Menu->File
     QAction *m_newAction = nullptr;
     QAction *m_openAction = nullptr;
+    QAction *m_saveAction = nullptr;
     QList<QAction*> m_saveAsActions;  // this is the saveAsMenu = it is the LIST of FILE.formats to be saved
     QAction *m_exitAction = nullptr;
 

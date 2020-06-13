@@ -109,6 +109,10 @@ void WindowContainer::createFileMenu()
     m_openAction->setShortcut(QKeySequence::Open);
     m_openAction->setIcon(QIcon(QString(":/icons/open-file")));
 
+    m_saveAction = new QAction(tr("&Save"), this);
+    m_saveAction->setShortcut(QKeySequence::Save);
+    m_openAction->setIcon(QIcon(QString(":/icons/save-file")));
+
     for (QByteArray format : QImageWriter::supportedImageFormats())
     {
         QString text = tr("%1...").arg(QString(format.toUpper()));
@@ -123,11 +127,10 @@ void WindowContainer::createFileMenu()
     {
         m_saveAsMenu->addAction(action);
     }
-    m_saveAsMenu->setIcon(QIcon(QString(":/icons/save-as-file")));
 
     m_exitAction = new QAction(tr("&Exit"), this);
     m_exitAction->setShortcuts(QKeySequence::Quit);
-    m_exitAction->setIcon(QIcon(QString(":/icons/exit")));
+    m_exitAction->setIcon(QIcon(QString(":/../icons/exit")));
 
     m_fileMenu = new QMenu(tr("&File"), this);
     m_fileMenu->addAction(m_newAction);

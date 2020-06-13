@@ -53,7 +53,7 @@ void Logger::setLevelsToDefault()
 {
     // set levels to info by default
     for (int i = 0; i < value_of(LOG_CATEGORY_COUNT); ++i) {
-        m_logLevels[i] = LOG_LEVEL_INFO;
+        m_logLevels[i] = LOG_LEVEL_DEBUG;
     }
 }
 

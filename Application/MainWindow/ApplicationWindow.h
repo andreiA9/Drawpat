@@ -52,10 +52,14 @@ private slots:
       */
     void open();
 
+    /** \brief simple save<which means overwritting the image file
+      */
+    void save();
+
     /** \brief depending on the ACTION that was being pressed>the
       *        FILE is being saved in the corresponding FORMAT
       */
-    void save();
+    void saveAs();
 
     void editPenColor();
     void editPenWidth();

@@ -24,5 +24,4 @@ void DrawingViewTests::test_case1()
     delete events;
 }
 
-
 QTEST_MAIN(DrawingViewTests)
