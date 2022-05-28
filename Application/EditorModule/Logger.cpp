@@ -115,7 +115,7 @@ QVector<QByteArray> generateLogCategoryAsciiStrings()
     return QVector<QByteArray>() << "Sample"
                                  << "Logger"
                                  << "Editor"
-                                 << "activity"
+                                 << "ApplicationWindow"
                                  << "sync"
                                  << "storage"
                                  << "wifi"

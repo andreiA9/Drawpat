@@ -68,6 +68,9 @@ void DrawingView::mousePressEvent(QMouseEvent *event)
         m_lastPoint = event->pos();
         m_isDrawingAllowed = true;
     }
+
+//    update();
+    repaint();
 }
 
 void DrawingView::mouseMoveEvent(QMouseEvent *event)

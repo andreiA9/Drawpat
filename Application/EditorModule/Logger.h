@@ -31,7 +31,7 @@ public:
         LOG_CATEGORY_SAMPLE = 0,
         LOG_CATEGORY_LOGGER,
         LOG_CATEGORY_EDITOR,
-        LOG_CATEGORY_ACTIVITY,
+        LOG_CATEGORY_WINDOW,
         LOG_CATEGORY_SYNC,
         LOG_CATEGORY_STORAGE,
         LOG_CATEGORY_WIFI,
@@ -116,5 +116,11 @@ private:
 #define loggerWarning loggerMacro(Logger::LOG_LEVEL_WARNING, Logger::LOG_CATEGORY_LOGGER).warning
 #define loggerCritical loggerMacro(Logger::LOG_LEVEL_CRITICAL, Logger::LOG_CATEGORY_LOGGER).critical
 #define loggerFatal loggerMacro(Logger::LOG_LEVEL_VERBOSE, Logger::LOG_CATEGORY_LOGGER).fatal
+
+#define windowDebug loggerMacro(Logger::LOG_LEVEL_DEBUG, Logger::LOG_CATEGORY_WINDOW).debug
+#define windowInfo loggerMacro(Logger::LOG_LEVEL_INFO, Logger::LOG_CATEGORY_WINDOW).info
+#define windowWarning loggerMacro(Logger::LOG_LEVEL_WARNING, Logger::LOG_CATEGORY_WINDOW).warning
+#define windowCritical loggerMacro(Logger::LOG_LEVEL_CRITICAL, Logger::LOG_CATEGORY_WINDOW).critical
+#define windowFatal loggerMacro(Logger::LOG_LEVEL_VERBOSE, Logger::LOG_CATEGORY_WINDOW).fatal
 
 #endif

@@ -1,17 +1,17 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.1)
 
 # numele PROIECTULUI
 set(PROJECT_NAME Drawpat)
 project(${PROJECT_NAME})
 
 
-# Test for supported Qt version
-set(QT_MINIMUM_VERSION 5.9.0)
-find_program(QMAKE_EXECUTABLE NAMES qmake HINTS ${QTDIR} ENV QTDIR PATH_SUFFIXES bin)
-execute_process(COMMAND ${QMAKE_EXECUTABLE} -query QT_VERSION OUTPUT_VARIABLE QT_VERSION)
-if(QT_VERSION VERSION_LESS QT_MINIMUM_VERSION)
-        MESSAGE(FATAL_ERROR "Minimum supported Qt version: ${QT_MINIMUM_VERSION}. Installed version: ${QT_VERSION}")
-endif()
+## Test for supported Qt version
+#set(QT_MINIMUM_VERSION 5.9.0)
+#find_program(QMAKE_EXECUTABLE NAMES qmake HINTS ${QTDIR} ENV QTDIR PATH_SUFFIXES bin)
+#execute_process(COMMAND ${QMAKE_EXECUTABLE} -query QT_VERSION OUTPUT_VARIABLE QT_VERSION)
+#if(QT_VERSION VERSION_LESS QT_MINIMUM_VERSION)
+#        MESSAGE(FATAL_ERROR "Minimum supported Qt version: ${QT_MINIMUM_VERSION}. Installed version: ${QT_VERSION}")
+#endif()
 
 
 # INSTRUCT CMake to call COMPILER=MOC automatically

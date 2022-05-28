@@ -16,6 +16,7 @@ EditorView::EditorView(QStackedWidget* container, DrawingView *drawingView, Text
     m_drawingView->resize(700, 400);
 
     m_container = container;
+    m_container->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     m_container->addWidget(m_drawingView);
     m_container->addWidget(m_textEditor);
     m_container->setCurrentWidget(m_drawingView);

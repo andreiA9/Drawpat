@@ -8,6 +8,8 @@
 #include <QStatusBar>
 #include <QImageWriter>
 #include <QPushButton>
+#include <QTreeView>
+#include <QFileSystemModel>
 
 // USER-DEFINED
 //#include "../EditorModule/EditorView.h"
@@ -23,8 +25,13 @@ public:
     WindowContainer(QWidget *parent = nullptr);
     ~WindowContainer();
 
-    // INITIALIZATION
+    /** \brief initializes the PAINT BUTTONS
+      */
     void initializeControlButtons();
+
+    /** \brief initializes the tree view with the file system model
+      */
+    void initializeFilesTreeView();
 
     /** \brief add the STATUS BAR to the MainLayout
       */
@@ -62,7 +69,7 @@ protected:
     QMenu *m_optionMenu = nullptr;
     QMenu *m_helpMenu = nullptr;
 
-    // Menu->File
+    // Menu -> File
     QAction *m_newAction = nullptr;
     QAction *m_openAction = nullptr;
     QAction *m_saveAction = nullptr;
@@ -91,7 +98,7 @@ protected:
     QPushButton *m_upperButton3 = nullptr;
     QPushButton *m_upperButton4 = nullptr;
 
-    QPushButton *m_button = nullptr;
+    QTreeView *filesTreeView;
 
     QGridLayout *m_mainLayout = nullptr;
 };

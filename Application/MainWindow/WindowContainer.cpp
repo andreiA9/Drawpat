@@ -32,16 +32,22 @@ void WindowContainer::initializeMainLayout()
     // NU SE STIE CE FAC
 //    m_gridLayout->setColumnStretch(0, 1);
 //    m_gridLayout->setColumnStretch(3, 1);
+
+//    m_mainLayout->setSpacing(10);
+    m_mainLayout->setHorizontalSpacing(10);
+    // MARGINILE de la CAPATELE.FERESTREI [ left / top / right / bottom ]
     m_mainLayout->setContentsMargins(10, 30, 10, 10);
+
     /* ECHIVALENT cu
     m_mainLayout->setGeometry(QRect(10, 100, 781, 521)); */
 
     // this means that the DrawingArea will expand on all-columns
     // of the LAYOUT
-    m_mainLayout->addWidget(getMainContainer(), 1, 0, 1, 4);
+    m_mainLayout->addWidget(getMainContainer(), 1, 1, 7, 6);
 
 
     initializeControlButtons();
+    initializeFilesTreeView();
 
 
     // setting the WIDGET.LAYOUT<a WIDGET will contain 1MAIN-LAYOUT
@@ -80,7 +86,7 @@ void WindowContainer::initializeControlButtons()
     // addLayout(QLayout * layout, int row, int column, int rowSpan, int columnSpan, Qt::Alignment alignment = 0)
     QHBoxLayout *m_horizontalLayout = new QHBoxLayout();
     m_horizontalLayout->setContentsMargins(0, 0, 0, 0);
-    m_mainLayout->addLayout(m_horizontalLayout, 0, 0, 1, 3);
+    m_mainLayout->addLayout(m_horizontalLayout, 0, 0, 1, 8);
 
     m_horizontalLayout->setObjectName(QString("verticalLayout"));
     m_horizontalLayout->addWidget(m_upperButton1);
@@ -88,6 +94,24 @@ void WindowContainer::initializeControlButtons()
     m_horizontalLayout->addWidget(m_upperButton2);
     m_horizontalLayout->addWidget(m_upperButton3);
     m_horizontalLayout->addWidget(m_upperButton4);
+
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // AI RAMAS
+    // 1. SPACING ul nu iti merge
+    // 2. trebuie sa faci SIZE POLICI = EXPANDING pentru QIMAGE = DrawingView
+    m_horizontalLayout->setSpacing(20);
+
+    windowDebug() << m_horizontalLayout->spacing();
+}
+
+void WindowContainer::initializeFilesTreeView()
+{
+    QFileSystemModel *model = new QFileSystemModel;
+    model->setRootPath(QDir::currentPath());
+    QTreeView *tree = new QTreeView();
+    tree->setModel(model);
+
+    m_mainLayout->addWidget(tree, 1, 0, 8, 2);
 }
 
 void WindowContainer::initializeStatusBar()
@@ -96,7 +120,7 @@ void WindowContainer::initializeStatusBar()
     m_statusbar->setObjectName(QString::fromUtf8("statusBar"));
     m_statusbar->showMessage(QString("A inceput aplicatia"), 3000);
     m_statusbar->setGeometry(QRect(10, 761, 781, 20));
-    m_mainLayout->addWidget(m_statusbar, 2, 0, 1, 4);
+//    m_mainLayout->addWidget(m_statusbar, 2, 0, 1, 8);
 }
 
 void WindowContainer::createFileMenu()
