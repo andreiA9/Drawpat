@@ -1,0 +1,2 @@
+add_subdirectory(FileTests)
+add_subdirectory(DirectoryTests)

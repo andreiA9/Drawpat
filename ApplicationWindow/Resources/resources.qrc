@@ -1,0 +1,49 @@
+<RCC>
+    <qresource prefix="/icons-edit">
+        <file alias="new-file">Icons-edit/new-file-96.png</file>
+        <file alias="open-file">Icons-edit/open-file-96.png</file>
+        <file alias="save-file">Icons-edit/save-file-96.png</file>
+        <file alias="exit">Icons-edit/exit-96.png</file>
+        <file alias="add-file">Icons-edit/add-file-96.png</file>
+        <file alias="add-new-file-copy">Icons-edit/add-new-file-copy-96.png</file>
+        <file alias="cut-text">Icons-edit/cut-text-96.png</file>
+        <file alias="copy-text">Icons-edit/copy-text-96.png</file>
+        <file alias="paste-text">Icons-edit/paste-text-96.png</file>
+        <file alias="undo">Icons-edit/undo-96.png</file>
+        <file alias="redo">Icons-edit/redo-96.png</file>
+    </qresource>
+    <qresource prefix="/icons-image">
+        <file alias="brush">Icons-image/tool-brush.png</file>
+        <file alias="color-picker">Icons-image/tool-color-picker.png</file>
+        <file alias="color-washer">Icons-image/tool-color-washer.png</file>
+        <file alias="curve">Icons-image/tool-curve.png</file>
+        <file alias="ellipse">Icons-image/tool-ellipse.png</file>
+        <file alias="elliptical-selection">Icons-image/tool-elliptical-selection.png</file>
+        <file alias="eraser">Icons-image/tool-eraser.png</file>
+        <file alias="flood-fill">Icons-image/tool-flood-fill.png</file>
+        <file alias="free-form-selection">Icons-image/tool-free-form-selection.png</file>
+        <file alias="line">Icons-image/tool-line.png</file>
+        <file alias="pen">Icons-image/tool-pen.png</file>
+        <file alias="polygon">Icons-image/tool-polygon.png</file>
+        <file alias="polyline">Icons-image/tool-polyline.png</file>
+        <file alias="polystar">Icons-image/tool-polystar.png</file>
+        <file alias="rectangle">Icons-image/tool-rectangle.png</file>
+        <file alias="rectangles">Icons-image/tool-rectangles.png</file>
+        <file alias="rect-selection">Icons-image/tool-rect-selection.png</file>
+        <file alias="rounded-rectangle">Icons-image/tool-rounded-rectangle.png</file>
+        <file alias="selections">Icons-image/tool-selections.png</file>
+        <file alias="spraycan">Icons-image/tool-spraycan.png</file>
+        <file alias="text">Icons-image/tool-text.png</file>
+    </qresource>
+    <qresource prefix="/other">
+        <file alias="brush-shapes">Other/brush-shapes.png</file>
+        <file alias="color-box">Other/color-box.png</file>
+        <file alias="colorbutton">Other/colorbutton-swap.png</file>
+        <file alias="eraser-shapes">Other/eraser-shapes.png</file>
+        <file alias="fill-style">Other/fill-style.png</file>
+        <file alias="rotate-anticlockwise">Other/image-rotate-anticlockwise.png</file>
+        <file alias="rotate-clockwise">Other/image-rotate-clockwise.png</file>
+        <file alias="line-width">Other/line-width.png</file>
+        <file alias="resize">Other/resize.png</file>
+    </qresource>
+</RCC>
