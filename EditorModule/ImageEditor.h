@@ -1,21 +1,21 @@
-#ifndef DRAWINGAREA_H
-#define DRAWINGAREA_H
+#ifndef IMAGE_EDITOR_H
+#define IMAGE_EDITOR_H
 
-
-#include <QWidget>
-#include <QMouseEvent>
-#include <QPainter>
-
-// USER-DEFINED
+// local project headers
+// ----------------------
 #include "Events.h"
 #include "PaintingManager.h"
 
+// standard C/C++ headers
+// ----------------------
+#include <QWidget>
+#include <QMouseEvent>
+#include <QPainter>
 
 /** \brief Getter needed when the User modifies the Image without changing it
   * \param level an integer setting how useful to be
   * \return Output that is extra useful
   */
-
 
 class ImageEditor : public QWidget
 {
@@ -93,4 +93,4 @@ private:
 //    TransformedRectangle* m_transformedRectangle;
 };
 
-#endif // DRAWINGAREA_H
+#endif // IMAGE_EDITOR_H

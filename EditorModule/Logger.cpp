@@ -1,6 +1,9 @@
+// local project headers
+// ----------------------
 #include "Logger.h"
 
-
+// standard C/C++ headers
+// ----------------------
 
 Logger s_globalLoggerInstance;
 

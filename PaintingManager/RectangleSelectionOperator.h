@@ -1,8 +1,12 @@
-#ifndef RECTANGLE_SELECTION_H
-#define RECTANGLE_SELECTION_H
+#ifndef RECTANGLE_SELECTION_OPERATOR_H
+#define RECTANGLE_SELECTION_OPERATOR_H
 
+// local project headers
+// ----------------------
 #include "CommonTypes.h"
 
+// standard C/C++ headers
+// ----------------------
 #include <QImage>
 #include <QRect>
 #include <QMouseEvent>
@@ -34,4 +38,4 @@ private:
     QRect m_transformedRect;
 };
 
-#endif // RECTANGLE_SELECTION_H
+#endif // RECTANGLE_SELECTION_OPERATOR_H

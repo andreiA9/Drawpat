@@ -1,4 +1,9 @@
+// local project headers
+// ----------------------
 #include "PaintingManager.h"
+
+// standard C/C++ headers
+// ----------------------
 
 void PaintingManager::clearImage()
 {

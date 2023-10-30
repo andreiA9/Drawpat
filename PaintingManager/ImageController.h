@@ -1,11 +1,14 @@
 #ifndef IMAGE_CONTOLLER_H
 #define IMAGE_CONTOLLER_H
 
-//#include "DocumentContainer.h"
+// local project headers
+// ----------------------
 #include "RectangleSelectionOperator.h"
 #include "ShapeOperator.h"
 #include "ShapeSharing.h"
 
+// standard C/C++ headers
+// ----------------------
 #include <QImage>
 #include <QPainter>
 

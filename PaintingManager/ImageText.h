@@ -1,6 +1,12 @@
 #ifndef IMAGE_TEXT_H
 #define IMAGE_TEXT_H
 
+// local project headers
+// ----------------------
+
+// standard C/C++ headers
+// ----------------------
+
 /*
 ImageText se va ocupa cu fisierul de text.pentru o IMAGINE
  |

@@ -1,14 +1,16 @@
 #ifndef MENU_H
 #define MENU_H
 
+// local project headers
+// ----------------------
+#include "Constants.h"
+
 // standard C/C++ headers
 // ----------------------
 #include <string>
 #include <map>
 #include <iostream>
 #include <QDebug>
-
-#include "Constants.h"
 
 class Menu
 {

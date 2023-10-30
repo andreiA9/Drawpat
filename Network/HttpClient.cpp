@@ -1,8 +1,10 @@
+// local project headers
+// ----------------------
 #include "HttpClient.h"
 
+// standard C/C++ headers
+// ----------------------
 #include <iostream>
-
-
 
 HttpClient::HttpClient(CompaniesWrapper *companies, ProgrammersWrapper *programmers)
 {

@@ -1,9 +1,10 @@
+// local project headers
+// ----------------------
 #include "JsonDeserializer.h"
 
-// QT
+// standard C/C++ headers
+// ----------------------
 #include <QDebug>
-
-
 
 JsonDeserializer::JsonDeserializer()
 {
@@ -56,10 +57,10 @@ QJsonArray JsonDeserializer::processJsonArray(const QByteArray& response)
 
 QList<Company> JsonDeserializer::extractCompanies()
 {
-
+    return {};
 }
 
 QList<Programmer> JsonDeserializer::extractProgrammers()
 {
-
+    return {};
 }

@@ -1,13 +1,15 @@
-#ifndef EDITORVIEW_H
-#define EDITORVIEW_H
+#ifndef EDITOR_VIEW_H
+#define EDITOR_VIEW_H
 
-// WIDGETS
-#include <QPushButton>
-#include <QStackedWidget>
-
-// USER-DEFINED
+// local project headers
+// ----------------------
 #include "TextEditor.h"
 #include "ImageEditor.h"
+
+// standard C/C++ headers
+// ----------------------
+#include <QPushButton>
+#include <QStackedWidget>
 
 class EditorView : public QObject
 {
@@ -32,4 +34,4 @@ private:
     Events* m_events = nullptr;
 };
 
-#endif // EDITORVIEW_H
+#endif // EDITOR_VIEW_H

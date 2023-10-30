@@ -1,11 +1,13 @@
+// local project headers
+// ----------------------
 #include "RestController.h"
 
+// standard C/C++ headers
+// ----------------------
 #include <QThread>
 
 static QString g_CompaniesUrl = "http://127.0.0.1:8000/companies/";
 static QString g_loginUrl = "http://127.0.0.1:8000/customlogin/";
-
-
 
 RestController::RestController(HttpClient *httpClient)
 {

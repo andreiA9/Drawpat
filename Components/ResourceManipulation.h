@@ -1,8 +1,13 @@
-#ifndef RESOURCEMANIPULATION_H
-#define RESOURCEMANIPULATION_H
+#ifndef RESOURCE_MANIPULATION_H
+#define RESOURCE_MANIPULATION_H
 
+// local project headers
+// ----------------------
 #include "CompaniesWrapper.h"
 #include "ProgrammersWrapper.h"
+
+// standard C/C++ headers
+// ----------------------
 
 class ResourceManipulationModule
 {
@@ -15,4 +20,4 @@ private:
     ProgrammersWrapper *m_programmers;
 };
 
-#endif // RESOURCEMANIPULATION_H
+#endif // RESOURCE_MANIPULATION_H

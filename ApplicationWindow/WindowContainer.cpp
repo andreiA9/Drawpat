@@ -1,5 +1,9 @@
+// local project headers
+// ----------------------
 #include "WindowContainer.h"
 
+// standard C/C++ headers
+// ----------------------
 #include <QFile>
 #include <QUrl>
 #include <QFileSystemModel>

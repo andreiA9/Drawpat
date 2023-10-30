@@ -1,5 +1,9 @@
+// local project headers
+// ----------------------
 #include "ApplicationWindow.h"
 
+// standard C/C++ headers
+// ----------------------
 #include <QApplication>
 
 int main(int argc, char *argv[])

@@ -1,6 +1,12 @@
 #ifndef SHAPE_OPERATOR_H
 #define SHAPE_OPERATOR_H
 
+// local project headers
+// ----------------------
+
+// standard C/C++ headers
+// ----------------------
+
 /*
 ShapeOperator se va ocupa de OPERATII.pe FORME
 -SELECTAREA FORMELOR.cu aceeasi CULOARE=VEZI la FISIERELE.despre CREIER

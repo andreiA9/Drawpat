@@ -1,14 +1,16 @@
 #ifndef JSON_DESERIALIZER_H
 #define JSON_DESERIALIZER_H
 
-// JSON
+// local project headers
+// ----------------------
+#include "Company.h"
+#include "Programmer.h"
+
+// standard C/C++ headers
+// ----------------------
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
-
-// USER-DEFINED
-#include "Company.h"
-#include "Programmer.h"
 
 class JsonDeserializer
 {

@@ -1,13 +1,15 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
+// local project headers
+// ----------------------
 
+// standard C/C++ headers
+// ----------------------
 #include <QVector>
 #include <type_traits>
 #include <QDebug>
 #include <QFileInfo>
-
-
 
 template <typename T>
 struct underlying_type {

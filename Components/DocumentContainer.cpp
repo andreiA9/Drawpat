@@ -1,4 +1,9 @@
+// local project headers
+// ----------------------
 #include "DocumentContainer.h"
+
+// standard C/C++ headers
+// ----------------------
 
 void DocumentContainer::addFile()
 {

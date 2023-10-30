@@ -1,8 +1,12 @@
 #ifndef REST_CONTROLLER_H
 #define REST_CONTROLLER_H
 
+// local project headers
+// ----------------------
 #include "HttpClient.h"
 
+// standard C/C++ headers
+// ----------------------
 #include <QThread>
 
 class RestController

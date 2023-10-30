@@ -1,8 +1,13 @@
 #ifndef PAINTING_MANAGER_H
 #define PAINTING_MANAGER_H
 
+// local project headers
+// ----------------------
 #include "ImageController.h"
 #include "ImageText.h"
+
+// standard C/C++ headers
+// ----------------------
 
 class PaintingManager
 {

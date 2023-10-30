@@ -1,6 +1,11 @@
-#ifndef TEXTEDITOR_H
-#define TEXTEDITOR_H
+#ifndef TEXT_EDITOR_H
+#define TEXT_EDITOR_H
 
+// local project headers
+// ----------------------
+
+// standard C/C++ headers
+// ----------------------
 #include <QWidget>
 
 class TextEditor : public QWidget

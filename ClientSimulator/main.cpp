@@ -1,6 +1,9 @@
-//#include "Menu.h"
+// local project headers
+// ----------------------
 #include "ClientSimulator.h"
 
+// standard C/C++ headers
+// ----------------------
 #include <QObject>
 
 int main(int argc, char *argv[])

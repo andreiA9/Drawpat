@@ -1,23 +1,21 @@
 #ifndef HTTP_CLIENT_H
 #define HTTP_CLIENT_H
 
-#include <QObject>
+// local project headers
+// ----------------------
+#include "JsonDeserializer.h"
+#include "CompaniesWrapper.h"
+#include "ProgrammersWrapper.h"
 
-// HTTP COMMUNICATION
+// standard C/C++ headers
+// ----------------------
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QUrl>
 #include <QUrlQuery>
-
-// QT
 #include <QDebug>
-//#include <QList>
-
-// USER
-#include "JsonDeserializer.h"
-#include "CompaniesWrapper.h"
-#include "ProgrammersWrapper.h"
+#include <QObject>
 
 typedef QPair<QString, QString> Token;
 

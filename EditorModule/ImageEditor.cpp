@@ -1,6 +1,11 @@
-#include <QtWidgets>
+// local project headers
+// ----------------------
 #include "ImageEditor.h"
 #include "EditorModule.h"
+
+// standard C/C++ headers
+// ----------------------
+#include <QtWidgets>
 
 ImageEditor::ImageEditor(Events *events, PaintingManager* paintingManager, QWidget *parent)
     : m_events(events), m_paintingManager(paintingManager)

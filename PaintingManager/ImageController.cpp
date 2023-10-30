@@ -1,5 +1,9 @@
+// local project headers
+// ----------------------
 #include "ImageController.h"
 
+// standard C/C++ headers
+// ----------------------
 #include <QDebug>
 
 void ImageController::clearImage()

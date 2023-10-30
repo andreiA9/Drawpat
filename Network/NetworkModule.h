@@ -1,8 +1,12 @@
 #ifndef NETWORK_MODULE_H
 #define NETWORK_MODULE_H
 
+// local project headers
+// ----------------------
 #include "RestController.h"
 
+// standard C/C++ headers
+// ----------------------
 
 class NetworkModule
 {

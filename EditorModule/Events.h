@@ -1,7 +1,12 @@
 #ifndef EVENTS_H
 #define EVENTS_H
 
+// local project headers
+// ----------------------
 #include "CommonTypes.h"
+
+// standard C/C++ headers
+// ----------------------
 
 class Events
 {

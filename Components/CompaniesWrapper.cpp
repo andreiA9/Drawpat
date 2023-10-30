@@ -1,4 +1,9 @@
+// local project headers
+// ----------------------
 #include "CompaniesWrapper.h"
+
+// standard C/C++ headers
+// ----------------------
 
 CompaniesWrapper::CompaniesWrapper()
 {

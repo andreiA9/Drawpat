@@ -1,19 +1,18 @@
-#ifndef ApplicationWindow_H
-#define ApplicationWindow_H
+#ifndef APPLICATION_WINDOW_H
+#define APPLICATION_WINDOW_H
 
-// QT WIDGETS
+// local project headers
+// ----------------------
+#include "WindowContainer.h"
+
+// standard C/C++ headers
+// ----------------------
 #include <QWidget>
 #include <QImageWriter>
 #include <QFileDialog>
 #include <QMessageBox>
-
 #include <QDebug>
-
-// QT
 #include <QList>
-
-// USER-DEFINED
-#include "WindowContainer.h"
 
 //QT_BEGIN_NAMESPACE
 //namespace Ui { class ApplicationWindow; }
@@ -80,4 +79,4 @@ private:
 private:
     EditorModule* m_editorModule = nullptr;
 };
-#endif // ApplicationWindow_H
+#endif // APPLICATION_WINDOW_H

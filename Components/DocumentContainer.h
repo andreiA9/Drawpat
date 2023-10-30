@@ -1,6 +1,11 @@
 #ifndef DOCUMENT_CONTAINER_H
 #define DOCUMENT_CONTAINER_H
 
+// local project headers
+// ----------------------
+
+// standard C/C++ headers
+// ----------------------
 #include <QVector>
 #include <QString>
 #include <QImage>

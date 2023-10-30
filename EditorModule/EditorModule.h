@@ -1,23 +1,21 @@
-#ifndef EDITORMODULE_H
-#define EDITORMODULE_H
+#ifndef EDITOR_MODULE_H
+#define EDITOR_MODULE_H
 
-// QT WIDGETS
-#include <QDir>
-#include <QFileDialog>
-#include <QColorDialog>
-#include <QInputDialog>
-
-// QT
-#include <QString>
-#include <QTranslator>
-#include "Logger.h"
-
-// USER-DEFINED
+// local project headers
+// ----------------------
 #include "EditorView.h"
 #include "Events.h"
 #include "ImageEditor.h"
 #include "TextEditor.h"
 #include "DocumentContainer.h"
+
+// standard C/C++ headers
+// ----------------------
+#include <QDir>
+#include <QFileDialog>
+#include <QColorDialog>
+#include <QInputDialog>
+#include <QString>
 
 // TODO: REMOVE Q_OBJECT from EditorModule < a MODULE cannot be QObject
 class EditorModule : public QObject
@@ -87,4 +85,4 @@ private:
     DocumentContainer m_documentContainer;
 };
 
-#endif // EDITORMODULE_H
+#endif // EDITOR_MODULE_H

@@ -1,4 +1,9 @@
+// local project headers
+// ----------------------
 #include "Events.h"
+
+// standard C/C++ headers
+// ----------------------
 
 Events::Events()
 {

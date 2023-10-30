@@ -1,6 +1,11 @@
+// local project headers
+// ----------------------
 #include "EditorModule.h"
 #include "PaintingManager.h"
+#include "Logger.h"
 
+// standard C/C++ headers
+// ----------------------
 #include <QThread>
 
 EditorModule::EditorModule(QStackedWidget* stackedWorkArea)

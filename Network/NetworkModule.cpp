@@ -1,6 +1,9 @@
+// local project headers
+// ----------------------
 #include "NetworkModule.h"
 
-
+// standard C/C++ headers
+// ----------------------
 
 NetworkModule::NetworkModule(CompaniesWrapper *companies, ProgrammersWrapper *programmers)
 {

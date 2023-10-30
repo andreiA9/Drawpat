@@ -1,7 +1,12 @@
-#ifndef MAINLAYOUT_H
-#define MAINLAYOUT_H
+#ifndef WINDOW_CONTAINER_H
+#define WINDOW_CONTAINER_H
 
-// QT WIDGETS
+// local project headers
+// ----------------------
+#include "EditorModule.h"
+
+// standard C/C++ headers
+// ----------------------
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QMenuBar>
@@ -10,12 +15,6 @@
 #include <QPushButton>
 #include <QTreeView>
 #include <QLabel>
-
-// USER-DEFINED
-//#include "../EditorModule/EditorView.h"
-#include "EditorModule.h"
-
-
 
 class WindowContainer : public QWidget
 {
@@ -111,4 +110,4 @@ protected:
     QPushButton* m_rotateButton4 = nullptr;
 };
 
-#endif // MAINLAYOUT_H
+#endif // WINDOW_CONTAINER_H

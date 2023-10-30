@@ -1,4 +1,9 @@
+// local project headers
+// ----------------------
 #include "ProgrammersWrapper.h"
+
+// standard C/C++ headers
+// ----------------------
 
 ProgrammersWrapper::ProgrammersWrapper()
 {

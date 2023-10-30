@@ -1,4 +1,9 @@
+// local project headers
+// ----------------------
 #include "RectangleSelectionOperator.h"
+
+// standard C/C++ headers
+// ----------------------
 
 static bool isInsideRectangle(QPoint mousePosition, QRect& rectangle)
 {

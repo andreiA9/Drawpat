@@ -1,4 +1,9 @@
+// local project headers
+// ----------------------
 #include "TextEditor.h"
+
+// standard C/C++ headers
+// ----------------------
 
 TextEditor::TextEditor(QWidget *parent)
 {

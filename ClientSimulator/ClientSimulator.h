@@ -1,12 +1,16 @@
 #ifndef CLIENT_SIMULATOR_H
 #define CLIENT_SIMULATOR_H
 
+// local project headers
+// ----------------------
 #include "Menu.h"
 #include "CompaniesWrapper.h"
 #include "ProgrammersWrapper.h"
 #include "ResourceManipulation.h"
 #include "NetworkModule.h"
 
+// standard C/C++ headers
+// ----------------------
 #include <QCoreApplication>
 #include <unistd.h>
 

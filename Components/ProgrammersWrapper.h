@@ -1,9 +1,13 @@
-#ifndef PROGRAMMERSWRAPPER_H
-#define PROGRAMMERSWRAPPER_H
+#ifndef PROGRAMMERS_WRAPPER_H
+#define PROGRAMMERS_WRAPPER_H
 
-#include <QList>
+// local project headers
+// ----------------------
 #include "Programmer.h"
 
+// standard C/C++ headers
+// ----------------------
+#include <QList>
 
 class ProgrammersWrapper
 {
@@ -13,4 +17,4 @@ public:
     void setProgrammers(QList<Programmer> &programmers);
 };
 
-#endif // PROGRAMMERSWRAPPER_H
+#endif // PROGRAMMERS_WRAPPER_H

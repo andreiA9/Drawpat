@@ -1,12 +1,13 @@
-#ifndef COMPANYWRAPPER_H
-#define COMPANYWRAPPER_H
+#ifndef COMPANIES_WRAPPER_H
+#define COMPANIES_WRAPPER_H
 
-// QT
+// local project headers
+// ----------------------
 #include <QList>
 
-// USER-DEFINED
+// standard C/C++ headers
+// ----------------------
 #include "Company.h"
-
 
 class CompaniesWrapper
 {
@@ -16,4 +17,4 @@ public:
     void setCompanies(QList<Company> &companies);
 };
 
-#endif // COMPANYWRAPPER_H
+#endif // COMPANIES_WRAPPER_H
